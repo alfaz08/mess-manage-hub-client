@@ -1,4 +1,5 @@
 import { Helmet } from "react-helmet-async";
+import Navbar from "../../components/Navbar/Navbar";
 
 
 const Home = () => {
@@ -7,9 +8,7 @@ const Home = () => {
       <Helmet>
         <title>Mess Manage | Home</title>
       </Helmet>
-      <div className="text-5xl">
-       This is home
-      </div>
+      
     </div>
   );
 };

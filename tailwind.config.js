@@ -3,10 +3,13 @@ export default {
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
-    ],
+  ],
   theme: {
-    extend: {},
+    extend: {
+      backgroundColor: {
+        'custom-red': '#EA1B25',
+      },
+    },
   },
   plugins: [require("daisyui")],
 }
-
