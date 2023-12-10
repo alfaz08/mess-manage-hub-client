@@ -9,7 +9,7 @@ const Home = () => {
       <Helmet>
         <title>Mess Manage | Home</title>
       </Helmet>
-      <Footer></Footer>
+      <Footer ></Footer>
     </div>
   );
 };

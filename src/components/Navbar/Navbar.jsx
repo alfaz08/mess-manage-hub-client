@@ -1,8 +1,22 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
-
+import useAuth from "../../hooks/useAuth";
+import {  toast } from "react-toastify";
 
 const Navbar = () => {
+
+
+    const {user,logOut} =useAuth()
+   console.log(user);
+    const handleLogOut =()=>{
+      logOut()
+      .then(()=>
+      {
+       console.log('user logged out successfully')
+      })
+      .catch(error=>toast(error))
+    
+    }
 
    const navLinks =<>
          <li className="text-xl"><NavLink to="/">Home</NavLink></li>
@@ -16,7 +30,7 @@ const Navbar = () => {
 
   return (
     <div>
-      <div className="navbar mt-2 p-2 bg-red-200">
+      <div className="navbar  p-2 bg-red-200">
   <div className="navbar-start">
     <div className="dropdown">
       <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -49,23 +63,45 @@ const Navbar = () => {
 
 
     
-  <div className="dropdown dropdown-end">
+  {
+    user?
+    <div className="dropdown dropdown-end">
       <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-        <div className="w-10 rounded-full">
-          <img alt="Tailwind CSS Navbar component" src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+        <div className=" w-16 rounded-full">
+        {
+            user.photoURL ?
+            <img alt="Tailwind CSS Navbar component" src={user?.photoURL}  />
+            :
+            <img alt="Tailwind CSS Navbar component" src="https://i.ibb.co/37dj5GJ/blank-profile-picture-973460-960-720.jpg" />
+          }
         </div>
       </div>
       <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52">
         <li>
-          <a className="justify-between">
-            Profile
-            <span className="badge">New</span>
-          </a>
+        {user.displayName ?
+           user.displayName
+           :
+          <div>
+             Account
+          </div>
+        
+        }
         </li>
-        <li><a>Settings</a></li>
-        <li><a>Logout</a></li>
+
+        <Link to='/dashboard/userHome'>
+        <li><a className="hover:bg-green-200">Dashboard</a></li>
+        </Link>
+
+        <li onClick={handleLogOut}><a className="hover:bg-green-200">Logout</a></li>
       </ul>
     </div>
+    :
+    <div>
+      <Link to="/login" className="text-2xl font-bold">Login</Link>
+    </div>
+  }
+
+
   </div>
 
 
