@@ -101,7 +101,7 @@ const SignUp = () => {
                   {...register("image", { required: true })}
                   required
                   type="file"
-                  className="file-input file-input-bordered border-green-300 file-input-green w-full "
+                  className="file-input file-input-bordered border-red-600 file-input-green w-full "
                 />
               </div>
 
