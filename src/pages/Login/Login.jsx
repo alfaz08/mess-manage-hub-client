@@ -51,17 +51,17 @@ const Login = () => {
           <label className="label">
             <span className="label-text text-xl font-semibold">Email</span>
           </label>
-          <input type="email" name="email" placeholder="email" className="input input-bordered border-green-400" required />
+          <input type="email" name="email" placeholder="email" className="input input-bordered border-red-400" required />
         </div>
         <div className="form-control">
           <label className="label">
             <span className="label-text text-xl font-semibold">Password</span>
           </label>
-          <input type="password" name="password" placeholder="password" className="input input-bordered border-green-400" required />
+          <input type="password" name="password" placeholder="password" className="input input-bordered border-red-400" required />
          
         </div>
         <div className="form-control mt-6">
-        <button  className="btn   bg-custom-color text-black  bg-green-300 hover:bg-black hover:text-white">Login</button>
+        <button  className="btn   bg-custom-color text-black  bg-red-400 hover:bg-black hover:text-white">Login</button>
         </div>
       </form>
 

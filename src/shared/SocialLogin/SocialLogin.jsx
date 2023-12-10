@@ -1,7 +1,34 @@
 import { FaGoogle } from "react-icons/fa";
+import useAuth from "../../hooks/useAuth";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
+import { useNavigate } from "react-router-dom";
 
 
 const SocialLogin = () => {
+
+  const {googleSignIn} = useAuth()
+  const axiosPublic = useAxiosPublic()
+  const navigate= useNavigate()
+
+  const handleGoogleSignIn = ()=>{
+      googleSignIn()
+      .then(result=>{
+        console.log(result.user);
+        const userInfo ={
+          email:result.user?.email,
+          name:result.user?.displayName,
+          roll:'member'
+        }
+        axiosPublic.post('/users',userInfo)
+        .then(res=>{
+          console.log(res.data);
+          navigate('/')
+        })
+      })
+  }
+
+
+
   return (
     <div >
       <div className="flex items-center justify-center">
@@ -11,7 +38,7 @@ const SocialLogin = () => {
       </div>
        
       <div className="text-center mb-4 mt-4 ">
-        <button   className=" text-red-600 font-bold btn border-black bg-custom-color hover:bg-black hover:text-white">
+        <button onClick={handleGoogleSignIn}  className=" text-red-600 font-bold btn border-black bg-custom-color hover:bg-black hover:text-white">
           <FaGoogle className="mr-2"></FaGoogle>
           Login With Google
         </button>

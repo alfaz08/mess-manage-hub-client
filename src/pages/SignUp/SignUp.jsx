@@ -44,7 +44,7 @@ const SignUp = () => {
       const userInfo ={
         email: data.email,
         name:data.name,
-        roll:'customer',
+        roll:'member',
       }
       const userRes = await axiosPublic.post('/users',userInfo)
       if(userRes.data.insertedId){
@@ -93,7 +93,7 @@ const SignUp = () => {
                   name="name"
                   {...register("name", { required: true })}
                   placeholder="Name"
-                  className="input input-bordered border-green-300"
+                  className="input input-bordered border-red-400"
                 />
                
               </div>
@@ -107,7 +107,7 @@ const SignUp = () => {
                   name="email"
                   placeholder="Email"
                   {...register("email", { required: true })}
-                  className="input input-bordered border-green-300"
+                  className="input input-bordered border-red-400"
                 />
                 {errors.email && (
                   <span className="text-red-600">This field is required</span>
@@ -128,7 +128,7 @@ const SignUp = () => {
                   })}
                   name="password"
                   placeholder="password"
-                  className="input input-bordered border-green-300"
+                  className="input input-bordered border-red-400"
                 />
                 {errors.password?.type === "required" && (
                   <span className="text-red-600">password is required</span>
@@ -156,7 +156,7 @@ const SignUp = () => {
                   {...register("image", { required: true })}
                   required
                   type="file"
-                  className="file-input file-input-bordered border-green-300 file-input-green w-full "
+                  className="file-input file-input-bordered border-red-400 file-input-green w-full "
                 />
               </div>
 
@@ -191,7 +191,7 @@ const SignUp = () => {
 
               <div className="form-control mt-6">
                 <input
-                  className="btn bg-green-300 hover:text-white hover:bg-black"
+                  className="btn bg-red-400 hover:text-white hover:bg-black"
                   type="submit"
                   value="Sign Up"
                 />
