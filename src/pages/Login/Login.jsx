@@ -1,14 +1,35 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import SocialLogin from "../../shared/SocialLogin/SocialLogin";
+import useAuth from "../../hooks/useAuth";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const Login = () => {
 
+  const {signIn} =useAuth()
+  const navigate =useNavigate()
+  const location =useLocation()
+
+
   const handleLogin=e=>{
     e.preventDefault();
-    const email =e.target.email.value;
-    const password =e.target.password.value;
-    console.log(email,password);
+  const email =e.target.email.value;
+  const password =e.target.password.value;
+  // console.log(email,password);
+  signIn(email,password)
+  .then(res=>{console.log(res.user)
+    navigate(location?.state?location.state:'/')
+   }) 
+   .catch(error=>{
+    console.log(error)
+    toast.error(error.message)
+    e.target.reset()
+   })
+
+
   }
+
 
 
   return (
@@ -30,17 +51,17 @@ const Login = () => {
           <label className="label">
             <span className="label-text text-xl font-semibold">Email</span>
           </label>
-          <input type="email" name="email" placeholder="email" className="input input-bordered border-red-400" required />
+          <input type="email" name="email" placeholder="email" className="input input-bordered border-green-400" required />
         </div>
         <div className="form-control">
           <label className="label">
             <span className="label-text text-xl font-semibold">Password</span>
           </label>
-          <input type="password" name="password" placeholder="password" className="input input-bordered border-red-400" required />
+          <input type="password" name="password" placeholder="password" className="input input-bordered border-green-400" required />
          
         </div>
         <div className="form-control mt-6">
-        <button  className="btn   bg-red-500 text-white hover:bg-black hover:text-white">Login</button>
+        <button  className="btn   bg-custom-color text-black  bg-green-300 hover:bg-black hover:text-white">Login</button>
         </div>
       </form>
 
@@ -66,12 +87,12 @@ const Login = () => {
 
      </div>
    
-
+     
    
      
  
     </div>
-
+    <ToastContainer></ToastContainer>
     </div>
 
   );
