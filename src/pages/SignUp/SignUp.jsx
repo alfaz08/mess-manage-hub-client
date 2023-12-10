@@ -1,10 +1,21 @@
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate} from "react-router-dom";
 import SocialLogin from "../../shared/SocialLogin/SocialLogin";
-
-
+import useAuth from "../../hooks/useAuth";
+import { useState } from "react";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Swal from "sweetalert2";
+const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
+const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
 const SignUp = () => {
+  const {createUser,updateUserProfile} = useAuth()
+  const [loggedIn,setLoggedIn]= useState(false)
+  const axiosPublic =useAxiosPublic()
+  
+
   const {
     register,
     handleSubmit,
@@ -16,11 +27,55 @@ const SignUp = () => {
   const { name, email, password, image, accountType } = data;
 
     console.log(name, email, password, image, accountType);
+
+    const imageFile ={image: data.image[0]}
+    const res =await axiosPublic.post(image_hosting_api,imageFile,{
+      headers:{
+        "content-type": "multipart/form-data"
+      }
+    })
+   if(res.data.success){
+    try{
+      const result = await createUser(data.email,data.password)
+      const loggedUser = result.user;
+
+      await updateUserProfile(data.name, res.data.data.display_url);
+       console.log('updated');
+      const userInfo ={
+        email: data.email,
+        name:data.name,
+        roll:'customer',
+      }
+      const userRes = await axiosPublic.post('/users',userInfo)
+      if(userRes.data.insertedId){
+        console.log('user added to database');
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Sign up has been successful',
+          showConfirmButton: false,
+          timer: 500,
+        });
+        setLoggedIn(true)
+      
+      }
+    }catch(error){
+      toast.error(error.message)
+      reset()
+    }
+   }
+
  }
 
 
   return (
-    <div className="">
+    <>
+    <div>
+   
+   {
+    loggedIn && <Navigate to="/"></Navigate>
+   }
+  
 <div className="hero ">
         <div className="hero-content flex-col ">
           <div className="text-center lg:text-left">
@@ -38,7 +93,7 @@ const SignUp = () => {
                   name="name"
                   {...register("name", { required: true })}
                   placeholder="Name"
-                  className="input input-bordered border-red-400"
+                  className="input input-bordered border-green-300"
                 />
                
               </div>
@@ -52,7 +107,7 @@ const SignUp = () => {
                   name="email"
                   placeholder="Email"
                   {...register("email", { required: true })}
-                  className="input input-bordered border-red-400"
+                  className="input input-bordered border-green-300"
                 />
                 {errors.email && (
                   <span className="text-red-600">This field is required</span>
@@ -73,7 +128,7 @@ const SignUp = () => {
                   })}
                   name="password"
                   placeholder="password"
-                  className="input input-bordered border-red-400"
+                  className="input input-bordered border-green-300"
                 />
                 {errors.password?.type === "required" && (
                   <span className="text-red-600">password is required</span>
@@ -101,7 +156,7 @@ const SignUp = () => {
                   {...register("image", { required: true })}
                   required
                   type="file"
-                  className="file-input file-input-bordered border-red-600 file-input-green w-full "
+                  className="file-input file-input-bordered border-green-300 file-input-green w-full "
                 />
               </div>
 
@@ -136,7 +191,7 @@ const SignUp = () => {
 
               <div className="form-control mt-6">
                 <input
-                  className="btn bg-red-500 text-white hover:text-white hover:bg-black"
+                  className="btn bg-green-300 hover:text-white hover:bg-black"
                   type="submit"
                   value="Sign Up"
                 />
@@ -157,10 +212,15 @@ const SignUp = () => {
    
 <div>
 <SocialLogin></SocialLogin>
+
 </div>
 
-     
+<ToastContainer/>
       </div>
+
+    
+    
+    </>
   
   );
 };
