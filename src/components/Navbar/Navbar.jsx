@@ -5,7 +5,7 @@ import {  toast } from "react-toastify";
 
 const Navbar = () => {
 
-
+  const isAdmin=false
     const {user,logOut} =useAuth()
    console.log(user);
     const handleLogOut =()=>{
@@ -88,9 +88,18 @@ const Navbar = () => {
         }
         </li>
 
+       
+        {
+        isAdmin ?
+        <Link to='/dashboard/adminHome'>
+        <li><a className="hover:bg-warning">Dashboard</a></li>
+        </Link>
+       :
         <Link to='/dashboard/userHome'>
         <li><a className="hover:bg-green-200">Dashboard</a></li>
+       
         </Link>
+       }
 
         <li onClick={handleLogOut}><a className="hover:bg-green-200">Logout</a></li>
       </ul>

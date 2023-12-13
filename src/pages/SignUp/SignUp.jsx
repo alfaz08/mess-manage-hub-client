@@ -191,7 +191,7 @@ const SignUp = () => {
 
               <div className="form-control mt-6">
                 <input
-                  className="btn bg-red-400 hover:text-white hover:bg-black"
+                  className="btn text-white bg-red-500 hover:text-white hover:bg-black"
                   type="submit"
                   value="Sign Up"
                 />

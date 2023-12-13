@@ -51,17 +51,17 @@ const Login = () => {
           <label className="label">
             <span className="label-text text-xl font-semibold">Email</span>
           </label>
-          <input type="email" name="email" placeholder="email" className="input input-bordered border-red-400" required />
+          <input type="email" name="email" placeholder="email" className="input input-bordered border-red-500" required />
         </div>
         <div className="form-control">
           <label className="label">
             <span className="label-text text-xl font-semibold">Password</span>
           </label>
-          <input type="password" name="password" placeholder="password" className="input input-bordered border-red-400" required />
+          <input type="password" name="password" placeholder="password" className="input input-bordered border-red-500" required />
          
         </div>
         <div className="form-control mt-6">
-        <button  className="btn   bg-custom-color text-black  bg-red-400 hover:bg-black hover:text-white">Login</button>
+        <button  className="btn   bg-custom-color text-white  bg-red-500 hover:bg-black hover:text-white">Login</button>
         </div>
       </form>
 
@@ -69,7 +69,7 @@ const Login = () => {
 
       <p className="text-center mt-4 mb-4 ">
         <span className="text-xl font-semibold ">Don't have an account please</span>
-        <Link to="/signUp"  className=" font-bold text-blue-600 text-xl hover:text-red-600"> Register</Link>
+        <Link to="/signUp"  className=" font-bold text-blue-600 text-xl hover:text-red-500"> Register</Link>
       </p>
 
 
