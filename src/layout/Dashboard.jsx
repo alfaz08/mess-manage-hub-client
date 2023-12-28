@@ -1,20 +1,27 @@
 import { NavLink, Outlet } from "react-router-dom";
 import { FaAd, FaCalendar, FaHome, FaList, FaSearch, FaShoppingCart,FaUtensils, FaBook, FaUser } from "react-icons/fa";
+import useAuth from "../hooks/useAuth";
+import { useState } from "react";
 const Dashboard = () => {
 
  const isAdmin =false
 
+ const {user} =useAuth()
+ const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
     <div className="flex">
       {/* dashboard side bar */}
-      <div className="w-64 min-h-screen bg-green-200">
+       <div className={`w-64 min-h-screen bg-red-200 sm:hidden md:block ${isMenuOpen ? 'hidden' : ''} `}>
          <ul className="menu">
 
 
      {
       isAdmin ?
       <>
+        <li>
+              <img src={user?.photoURL} className="h-40 w-40 rounded-full ml-6" alt="" />
+            </li>
        <li>
               <NavLink to="/dashboard/adminHome">
               <FaHome></FaHome>
@@ -49,6 +56,9 @@ const Dashboard = () => {
       :
      
       <>
+       <li>
+              <img src={user?.photoURL} className="h-40 w-40 rounded-full ml-6" alt="" />
+            </li>
        <li>
               <NavLink to="/dashboard/userHome">
               <FaHome></FaHome>
@@ -105,6 +115,12 @@ const Dashboard = () => {
 
          </ul>
       </div>
+      <div className="block lg:hidden">
+          <button onClick={() => setIsMenuOpen(!isMenuOpen)}>
+           
+            <span className="text-2xl">&#9776;</span>
+          </button>
+        </div>
          {/* dashboard content */}
         <div className="flex-1">
           <Outlet></Outlet>
