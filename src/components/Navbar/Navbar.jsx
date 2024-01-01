@@ -2,10 +2,11 @@ import { Link, NavLink } from "react-router-dom";
 
 import useAuth from "../../hooks/useAuth";
 import {  toast } from "react-toastify";
+import useAdmin from "../../hooks/useAdmin";
 
 const Navbar = () => {
 
-  const isAdmin=false
+  const [isAdmin]=useAdmin()
     const {user,logOut} =useAuth()
    console.log(user);
     const handleLogOut =()=>{

@@ -6,7 +6,7 @@ const UserHome = () => {
  
   
   // const {address,date,email,image,name,phone,roll,shop} =userInfo
-  console.log(user.displayName);
+  console.log(user?.displayName);
 
 
   return (

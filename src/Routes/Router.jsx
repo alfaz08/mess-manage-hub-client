@@ -7,6 +7,7 @@ import SignUp from "../pages/SignUp/SignUp";
 import Dashboard from "../layout/Dashboard";
 import UserHome from "../pages/Dashboard/User/UserHome/UserHome";
 import AdminHome from "../pages/Dashboard/Admin/AdminHome/AdminHome";
+import AddMeal from "../pages/Dashboard/Admin/AddMeal/AddMeal";
 
 const router = createBrowserRouter([
   {
@@ -47,7 +48,11 @@ const router = createBrowserRouter([
       {
         path: "adminHome",
         element: <AdminHome></AdminHome>
-      }
+      },
+      {
+        path: "addMeal",
+        element: <AddMeal></AddMeal>
+      },
     ]
   }
    ]);

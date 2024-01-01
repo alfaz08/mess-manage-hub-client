@@ -2,12 +2,14 @@ import { NavLink, Outlet } from "react-router-dom";
 import { FaAd, FaCalendar, FaHome, FaList, FaSearch, FaShoppingCart,FaUtensils, FaBook, FaUser } from "react-icons/fa";
 import useAuth from "../hooks/useAuth";
 import { useState } from "react";
+import useAdmin from "../hooks/useAdmin";
 const Dashboard = () => {
 
- const isAdmin =false
+
 
  const {user} =useAuth()
  const [isMenuOpen, setIsMenuOpen] = useState(false);
+ const [isAdmin] =useAdmin()
 
   return (
     <div className="flex">
@@ -29,9 +31,9 @@ const Dashboard = () => {
                 </NavLink>
             </li>
             <li>
-              <NavLink to="/dashboard/addItems">
+              <NavLink to="/dashboard/addMeal">
               <FaUtensils></FaUtensils>
-               Add Items
+               Add Meal
                 </NavLink>
             </li>
             <li>
