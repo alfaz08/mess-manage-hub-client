@@ -49,6 +49,20 @@ const logOut =()=>{
 useEffect(()=>{
   const unsubscribe = onAuthStateChanged(auth,(currentUser)=>{
     setUser(currentUser)
+    if(currentUser){
+      //get token and store client
+       const userInfo ={email: currentUser.email}
+       axiosPublic.post('/jwt',userInfo)
+       .then(res=>{
+         if(res.data.token){
+           localStorage.setItem('access-token',res.data.token)
+         }
+       })
+   }
+   else{
+         //TODO: remove token
+      localStorage.removeItem('access-token')
+   }
     setLoading(false)
   })
   return ()=>{
