@@ -8,6 +8,7 @@ import Dashboard from "../layout/Dashboard";
 import UserHome from "../pages/Dashboard/User/UserHome/UserHome";
 import AdminHome from "../pages/Dashboard/Admin/AdminHome/AdminHome";
 import AddMeal from "../pages/Dashboard/Admin/AddMeal/AddMeal";
+import AllUsers from "../pages/Dashboard/Admin/UserList/AllUsers";
 
 const router = createBrowserRouter([
   {
@@ -52,6 +53,10 @@ const router = createBrowserRouter([
       {
         path: "addMeal",
         element: <AddMeal></AddMeal>
+      },
+      {
+        path: "allUsers",
+        element: <AllUsers></AllUsers>
       },
     ]
   }
