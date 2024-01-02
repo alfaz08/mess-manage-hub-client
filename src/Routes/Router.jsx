@@ -9,6 +9,8 @@ import UserHome from "../pages/Dashboard/User/UserHome/UserHome";
 import AdminHome from "../pages/Dashboard/Admin/AdminHome/AdminHome";
 import AddMeal from "../pages/Dashboard/Admin/AddMeal/AddMeal";
 import AllUsers from "../pages/Dashboard/Admin/UserList/AllUsers";
+import PrivateRoute from "./PrivateRoute";
+import AdminRoute from "./AdminRoute";
 
 const router = createBrowserRouter([
   {
@@ -40,7 +42,7 @@ const router = createBrowserRouter([
       //for users
       {
         path: "userHome",
-        element: <UserHome></UserHome>
+        element: <PrivateRoute><UserHome></UserHome></PrivateRoute>
       },
 
 
@@ -48,15 +50,15 @@ const router = createBrowserRouter([
       //for admin
       {
         path: "adminHome",
-        element: <AdminHome></AdminHome>
+        element: <AdminRoute><AdminHome></AdminHome></AdminRoute>
       },
       {
         path: "addMeal",
-        element: <AddMeal></AddMeal>
+        element: <AdminRoute><AddMeal></AddMeal></AdminRoute>
       },
       {
         path: "allUsers",
-        element: <AllUsers></AllUsers>
+        element: <AdminRoute><AllUsers></AllUsers></AdminRoute>
       },
     ]
   }
