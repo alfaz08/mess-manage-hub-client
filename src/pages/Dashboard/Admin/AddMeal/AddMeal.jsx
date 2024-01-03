@@ -4,6 +4,7 @@ import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import useAuth from "../../../../hooks/useAuth";
 import { Helmet } from "react-helmet-async";
 import SectionTitle from "../../../SectionTitle/SectionTitle";
+import Swal from "sweetalert2";
 
 
 
@@ -23,11 +24,30 @@ const AddMeal = () => {
 
   const onSubmit =async (data)=>{
   
-    const productInfo ={
-      
-      
+    const mealItem ={
+      name: user?.displayName,
+      email: user?.email,
+      title: data.title,
+      description: data.des,
+      totalMeal:data.total,
+      time:data.tag,
+      createdAt: new Date(),
     }
-    console.log(productInfo);
+   
+    const menuRes =await axiosSecure.post('/meals',mealItem)
+      
+      if(menuRes.data.insertedId){
+        reset()
+        //show success popup
+        Swal.fire({
+          position:"top-end",
+          icon:"success",
+          title:`${data.title} is added in the post!`,
+          showConfirmButton:false,
+          timer:1500
+        })
+
+      }
 
   }
 
@@ -51,7 +71,7 @@ const AddMeal = () => {
             <form onSubmit={handleSubmit(onSubmit)} className="card-body ">
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text">Product Name</span>
+                  <span className="label-text">Meal Title</span>
                 </label>
                 <input
                   type="text"
@@ -65,7 +85,7 @@ const AddMeal = () => {
 
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text">Product Description</span>
+                  <span className="label-text">Meal Description</span>
                 </label>
                 <input
                   type="text"
@@ -96,33 +116,62 @@ const AddMeal = () => {
 
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text">Expire Date</span>
+                  <span className="label-text">Meal Item</span>
                 </label>
                 <input
-                  type="date"
-                  name="expire"
-                  {...register("expire", { required: true })}
-                  placeholder="Expire Date"
+                  type="text"
+                  name="item"
+                  {...register("item", { required: true })}
+                  placeholder="Meal Item"
                   className="input input-bordered border-green-300"
                 />
                
               </div>
 
 
+
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Total Meal</span>
+                </label>
+                <input
+                  type="number"
+                  name="total"
+                  {...register("total", { required: true })}
+                  placeholder="Total meal"
+                  className="input input-bordered border-green-300"
+                />
+               
+              </div>
+
             
         {/* category */}
+    
+        {/* category */}
+        <div className="form-control mt-6  ">
+          <label className="label">
+            <span className="label-text">Meal Time</span>
+          </label>
+          <select 
+            defaultValue="default"
+            {...register("tag",{required:true})}
+            required
+            className="select select-bordered border-amber-400 w-full"
+          >
+            <option disabled value="default" >
+              Select a Tag
+            </option>
+            <option value="breakfast">Breakfast</option>
+            <option value="lunch">Lunch</option>
+            <option value="dinner">Dinner</option>
+            
+          </select>
+        </div>
+
       
 
               
 
-              <div className="form-control w-full my-6">
-                <input
-                  {...register("image", { required: true })}
-                  required
-                  type="file"
-                  className="file-input file-input-bordered border-green-300 file-input-green w-full "
-                />
-              </div>
 
          
 
@@ -133,7 +182,7 @@ const AddMeal = () => {
                 <input
                   className="btn bg-green-300 hover:text-white hover:bg-black"
                   type="submit"
-                  value="Add Product"
+                  value="Add Meal"
                 />
               </div>
             </form>
