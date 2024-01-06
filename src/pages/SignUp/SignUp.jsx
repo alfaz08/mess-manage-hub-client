@@ -45,6 +45,7 @@ const SignUp = () => {
         email: data.email,
         name:data.name,
         roll:'member',
+        type: 'normal'
       }
       const userRes = await axiosPublic.post('/users',userInfo)
       if(userRes.data.insertedId){

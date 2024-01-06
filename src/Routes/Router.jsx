@@ -11,6 +11,9 @@ import AddMeal from "../pages/Dashboard/Admin/AddMeal/AddMeal";
 import AllUsers from "../pages/Dashboard/Admin/UserList/AllUsers";
 import PrivateRoute from "./PrivateRoute";
 import AdminRoute from "./AdminRoute";
+import AddBazar from "../pages/Dashboard/Admin/AddBazar/AddBazar";
+import Payment from "../pages/Dashboard/User/Payment/Payment";
+import ConfirmPayment from "../pages/Dashboard/User/Payment/ConfirmPayment";
 
 const router = createBrowserRouter([
   {
@@ -44,6 +47,14 @@ const router = createBrowserRouter([
         path: "userHome",
         element: <PrivateRoute><UserHome></UserHome></PrivateRoute>
       },
+      {
+        path: "payment",
+        element: <PrivateRoute> <Payment></Payment> </PrivateRoute>
+      },
+      {
+        path: "confirmPayment",
+        element: <PrivateRoute> <ConfirmPayment></ConfirmPayment> </PrivateRoute>
+      },
 
 
 
@@ -59,6 +70,10 @@ const router = createBrowserRouter([
       {
         path: "allUsers",
         element: <AdminRoute><AllUsers></AllUsers></AdminRoute>
+      },
+      {
+        path: "addBazar",
+        element: <AdminRoute> <AddBazar></AddBazar> </AdminRoute>
       },
     ]
   }
