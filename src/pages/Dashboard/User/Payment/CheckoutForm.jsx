@@ -95,7 +95,7 @@ const CheckoutForm = ({postItem}) => {
       }
   
       const patchData = {
-        roll: 'premium',
+        type: 'premium',
       };
   
       const patchRes = await axiosSecure.patch(`/member/${user?.email}`, patchData);
