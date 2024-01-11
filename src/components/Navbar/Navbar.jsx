@@ -10,7 +10,7 @@ const Navbar = () => {
   const [isAdmin]=useAdmin()
     const {user,logOut} =useAuth()
    console.log(user);
-  
+   const normalizedUserInfo =useProfile()
   
     const handleLogOut =()=>{
       logOut()
@@ -26,7 +26,12 @@ const Navbar = () => {
          <li className="text-xl"><NavLink to="/">Home</NavLink></li>
          <li className="text-xl"><NavLink to="/login">Login</NavLink></li>
          <li className="text-xl"><NavLink to="/signUp">SignUp</NavLink></li>
-         <li className="text-xl"><NavLink to="/bookDate">Book your Bazar Date</NavLink></li>
+         {
+          normalizedUserInfo?.bazar==='yes'?
+          null
+          :
+          <li className="text-xl"><NavLink to="/bookDate">Book your Bazar Date</NavLink></li>
+         }
 
    
    </>
