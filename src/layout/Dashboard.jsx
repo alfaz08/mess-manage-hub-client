@@ -50,8 +50,8 @@ const Dashboard = () => {
             </li>
             <li>
               <NavLink to="/dashboard/bookings">
-              <FaBook></FaBook>
-                Manage Bookings
+              <FaList></FaList>
+                Bazar Bookings List
                 </NavLink>
             </li>
             <li>

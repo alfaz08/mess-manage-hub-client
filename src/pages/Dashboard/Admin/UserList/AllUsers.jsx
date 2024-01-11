@@ -4,6 +4,7 @@ import { FaUser, FaUserShield } from "react-icons/fa6";
 import { FaTrashAlt } from "react-icons/fa";
 import Swal from "sweetalert2";
 import useAxiosSecure from '../../../../hooks/useAxiosSecure';
+
 const AllUsers = () => {
   const [allUser,refetch]=useAllUsers()
   const axiosSecure =useAxiosSecure()

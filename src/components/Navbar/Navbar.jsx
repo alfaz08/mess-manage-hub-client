@@ -27,7 +27,7 @@ const Navbar = () => {
          <li className="text-xl"><NavLink to="/login">Login</NavLink></li>
          <li className="text-xl"><NavLink to="/signUp">SignUp</NavLink></li>
          {
-          normalizedUserInfo?.bazar==='yes'?
+          normalizedUserInfo?.bazar==='yes' || normalizedUserInfo?.roll==='admin'?
           null
           :
           <li className="text-xl"><NavLink to="/bookDate">Book your Bazar Date</NavLink></li>
