@@ -3,12 +3,15 @@ import { Link, NavLink } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import {  toast } from "react-toastify";
 import useAdmin from "../../hooks/useAdmin";
+import useProfile from "../../hooks/useProfile";
 
 const Navbar = () => {
 
   const [isAdmin]=useAdmin()
     const {user,logOut} =useAuth()
    console.log(user);
+  
+  
     const handleLogOut =()=>{
       logOut()
       .then(()=>
@@ -23,6 +26,7 @@ const Navbar = () => {
          <li className="text-xl"><NavLink to="/">Home</NavLink></li>
          <li className="text-xl"><NavLink to="/login">Login</NavLink></li>
          <li className="text-xl"><NavLink to="/signUp">SignUp</NavLink></li>
+         <li className="text-xl"><NavLink to="/bookDate">Book your Bazar Date</NavLink></li>
 
    
    </>

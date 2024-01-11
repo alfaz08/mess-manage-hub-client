@@ -14,6 +14,7 @@ import AdminRoute from "./AdminRoute";
 import AddBazar from "../pages/Dashboard/Admin/AddBazar/AddBazar";
 import Payment from "../pages/Dashboard/User/Payment/Payment";
 import ConfirmPayment from "../pages/Dashboard/User/Payment/ConfirmPayment";
+import BookDate from "../pages/BookDate/BookDate";
 
 const router = createBrowserRouter([
   {
@@ -32,7 +33,11 @@ const router = createBrowserRouter([
     {
       path: "signUp",
       element: <SignUp></SignUp>
-    }
+    },
+    {
+      path: "bookDate",
+      element: <PrivateRoute> <BookDate></BookDate> </PrivateRoute>
+    },
    ]
   },
 
@@ -55,6 +60,7 @@ const router = createBrowserRouter([
         path: "confirmPayment",
         element: <PrivateRoute> <ConfirmPayment></ConfirmPayment> </PrivateRoute>
       },
+     
 
 
 

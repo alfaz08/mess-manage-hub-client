@@ -18,7 +18,8 @@ const SocialLogin = () => {
           email:result.user?.email,
           name:result.user?.displayName,
           roll:'member',
-          type:'normal'
+          type: 'normal',
+          bazar: 'no'
         }
         axiosPublic.post('/users',userInfo)
         .then(res=>{
