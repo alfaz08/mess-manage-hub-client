@@ -1,8 +1,11 @@
 import useAuth from "../../../../hooks/useAuth";
+import useProfile from "../../../../hooks/useProfile";
 
 
 const UserHome = () => {
   const {user} =useAuth()
+  const normalizedUserInfo =useProfile()
+  console.log(normalizedUserInfo);
  
   
   // const {address,date,email,image,name,phone,roll,shop} =userInfo
@@ -19,7 +22,12 @@ const UserHome = () => {
    
     
     <div className="card-actions justify-end">
-      <button className="btn btn-warning">Buy Now</button>
+      <h2>{normalizedUserInfo.bookingDate &&
+                    new Intl.DateTimeFormat("en-US", {
+                      year: "numeric",
+                      day: "numeric",
+                      month: "long",
+                    }).format(new Date(normalizedUserInfo.bookingDate))}</h2>
     </div>
   </div>
 </div>
