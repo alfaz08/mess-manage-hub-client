@@ -4,10 +4,13 @@ import useAuth from "../../hooks/useAuth";
 import {  toast } from "react-toastify";
 import useAdmin from "../../hooks/useAdmin";
 import useProfile from "../../hooks/useProfile";
+import useBazarBooking from "../../hooks/useBazarBooking";
 
 const Navbar = () => {
 
   const [isAdmin]=useAdmin()
+  const [allBooking] =useBazarBooking()
+  console.log(allBooking);
     const {user,logOut} =useAuth()
    console.log(user);
    const normalizedUserInfo =useProfile()
@@ -27,10 +30,10 @@ const Navbar = () => {
          <li className="text-xl"><NavLink to="/login">Login</NavLink></li>
          <li className="text-xl"><NavLink to="/signUp">SignUp</NavLink></li>
          {
-          normalizedUserInfo?.bazar==='yes' || normalizedUserInfo?.roll==='admin'?
-          null
-          :
+          normalizedUserInfo?.bazar==='no'?
           <li className="text-xl"><NavLink to="/bookDate">Book your Bazar Date</NavLink></li>
+          :
+          null
          }
 
    

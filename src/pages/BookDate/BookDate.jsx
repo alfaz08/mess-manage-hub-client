@@ -6,54 +6,66 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
-
-
+import useBazarBooking from "../../hooks/useBazarBooking";
 
 const BookDate = () => {
-  
-  const normalizedUserInfo =useProfile()
-  
+  const normalizedUserInfo = useProfile();
   const [value, onChange] = useState(new Date());
-  const axiosSecure =useAxiosSecure()
-  const navigate =useNavigate()
-  const {user} =useAuth()
- 
-  const isDateDisabled =({activeStartDate,date,view})=>{
-    if(
-      (view==='month' && date.getMonth() !== value.getMonth()) ||
-      date <new Date()
-    ){
-      return true
-    }
-    return false
-  }
+  const axiosSecure = useAxiosSecure();
+  const navigate = useNavigate();
+  const { user } = useAuth();
+  const [allBooking] = useBazarBooking();
 
-  const handleBookDate = async (value)=>{
-    const bookingInfo ={
-      bookingDate:value,
-      email:normalizedUserInfo?.email,
-      name:normalizedUserInfo?.name,
-      bazar:'yes'
+  const isDateDisabled = ({ activeStartDate, date, view }) => {
+    if (
+      (view === 'month' && date.getMonth() !== value.getMonth()) ||
+      date < new Date()
+    ) {
+      return true;
     }
-    const res = await axiosSecure.post('/bazarBooked',bookingInfo)
-    if(res.data){
-      Swal.fire({
-        position:"top-end",
-        icon:"success",
-        title:'Your bazar date is booked',
-        showConfirmButton:false,
-        timer:1500
-      })
-    }
-    const patchData = {
-      bazar:'yes',
+
+    // Check if the date is already booked
+    const formattedDate = date.toISOString(); // Convert date to the same format as in allBooking
+    const isBooked = allBooking.some(
+      (booking) => booking.bookingDate === formattedDate
+    );
+
+    return isBooked;
+  };
+
+  const handleBookDate = async (value) => {
+    const bookingInfo = {
+      bookingDate: value,
+      email: normalizedUserInfo?.email,
+      name: normalizedUserInfo?.name,
+      bazar: 'yes',
     };
-    const patchRes = await axiosSecure.patch(`/member/bazar/${user?.email}`, patchData);
-    if(patchRes.data.modifiedCount){
-      navigate('/')
-    }
-  }
 
+    const res = await axiosSecure.post('/bazarBooked', bookingInfo);
+
+    if (res.data) {
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: 'Your bazar date is booked',
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    }
+
+    const patchData = {
+      bazar: 'yes',
+    };
+
+    const patchRes = await axiosSecure.patch(
+      `/member/bazar/${user?.email}`,
+      patchData
+    );
+
+    if (patchRes.data.modifiedCount) {
+      navigate('/dashboard/userHome');
+    }
+  };
 
   return (
     <div>
@@ -73,13 +85,15 @@ const BookDate = () => {
               value={value}
               tileDisabled={isDateDisabled}
             />
-            <button onClick={()=>handleBookDate(value)} className="btn btn-warning hover:text-white hover:bg-black">Book Date</button>
+            <button
+              onClick={() => handleBookDate(value)}
+              className="btn btn-warning hover:text-white hover:bg-black"
+            >
+              Book Date
+            </button>
           </div>
-          
         </div>
-       
       </div>
-     
     </div>
   );
 };
