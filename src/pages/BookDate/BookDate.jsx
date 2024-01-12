@@ -52,9 +52,10 @@ const BookDate = () => {
         timer: 1500,
       });
     }
-
+    const bookingDate= value
     const patchData = {
       bazar: 'yes',
+      bookingDate: bookingDate,
     };
 
     const patchRes = await axiosSecure.patch(

@@ -46,7 +46,8 @@ const SignUp = () => {
         name:data.name,
         roll:'member',
         type: 'normal',
-        bazar: 'no'
+        bazar: 'no',
+        bookingDate:'none'
       }
       const userRes = await axiosPublic.post('/users',userInfo)
       if(userRes.data.insertedId){
