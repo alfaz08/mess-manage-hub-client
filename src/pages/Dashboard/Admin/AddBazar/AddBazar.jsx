@@ -19,7 +19,7 @@ const AddBazar = () => {
     control,
   } = useForm({
     defaultValues: {
-      items: [{ one: "", item: "" }],
+      items: [{ weight: "", item: "" }],
     },
   });
 
@@ -65,8 +65,6 @@ const AddBazar = () => {
                   className="input input-bordered border-red-400"
                 />
               </div>
-
-
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Meal Description</span>
@@ -80,42 +78,43 @@ const AddBazar = () => {
                 />
               </div>
 
-
-
-
               {fields.map((item, index) => (
                 <div key={item.id} className="form-control">
                   <label className="label">
-                    <span className="label-text">{`Item-${index + 1} (item name and weight)`}</span>
+                    <span className="label-text">{`Item-${
+                      index + 1
+                    } (item name and weight)`}</span>
                   </label>
 
-
                   <div className="flex  gap-6">
-                  <div>
-                  <input
-                    type="text"
-                    name={`items[${index}].one`}
-                    {...register(`items[${index}].one`, { required: true })}
-                    placeholder="Item Name"
-                    className="input input-bordered w-96 border-red-400"
-                  />
+                    <div>
+                      <input
+                        type="text"
+                        name={`items[${index}].item`}
+                        {...register(`items[${index}].item`, { required: true })}
+                        placeholder="Item Name"
+                        className="input input-bordered w-96 border-red-400"
+                      />
+                    </div>
+
+                    <div>
+                      <input
+                        type="text"
+                        name={`items[${index}].weight`}
+                        {...register(`items[${index}].weight`, {
+                          required: true,
+                        })}
+                        placeholder="Weight"
+                        className="input input-bordered  border-red-400"
+                      />
+                    </div>
                   </div>
 
-                  <div>
-                  <input
-                    type="text"
-                    name={`items[${index}].item`}
-                    {...register(`items[${index}].item`, { required: true })}
-                    placeholder="Weight"
-                    className="input input-bordered  border-red-400"
-                  />
-                  </div>
-                  </div>
-
-
-
-
-                  <button type="button" className="mt-2 btn bg-gray-200 hover:text-white hover:bg-black"  onClick={() => remove(index)}>
+                  <button
+                    type="button"
+                    className="mt-2 btn bg-gray-200 hover:text-white hover:bg-black"
+                    onClick={() => remove(index)}
+                  >
                     Remove Item
                   </button>
                 </div>
@@ -123,10 +122,10 @@ const AddBazar = () => {
 
               <button
                 type="button"
-                onClick={() => append({ one: "", item: "" })}
+                onClick={() => append({ item: "", weight: "" })}
                 className="btn bg-blue-500 text-white hover:text-white hover:bg-black"
               >
-                Add Item
+                Add This Item
               </button>
 
               <div className="form-control">
@@ -180,4 +179,3 @@ const AddBazar = () => {
 };
 
 export default AddBazar;
-
