@@ -1,15 +1,22 @@
-import { useForm, useFieldArray } from "react-hook-form";
+import { useForm, useFieldArray, Controller } from "react-hook-form";
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import useAuth from "../../../../hooks/useAuth";
 import { Helmet } from "react-helmet-async";
 import SectionTitle from "../../../SectionTitle/SectionTitle";
 import Swal from "sweetalert2";
+import { FaMinusCircle } from "react-icons/fa";
+import { useState } from "react";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import { FaCalendarAlt } from 'react-icons/fa';
+import { FaPlusCircle } from "react-icons/fa";
 
 const AddBazar = () => {
   const axiosPublic = useAxiosPublic();
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
+  const [startDate, setStartDate] = useState(new Date());
 
   const {
     register,
@@ -30,14 +37,26 @@ const AddBazar = () => {
 
   const onSubmit = async (data) => {
     const itemList = {
-      name: user?.displayName,
-      email: user?.email,
-      title: data.title,
-      description: data.des,
+      name: data.title,
+      
       totalMeal: data.total,
-      time: data.tag,
+      bazarMoney:data.money,
+      breakfast:{
+        name:'breakfast',
+        meal:data.breakfast
+      },
+      lunch:{
+        name:'lunch',
+        meal:data.lunch
+      },
+      dinner:{
+        name:'dinner',
+        meal:data.dinner
+      },
       createdAt: new Date(),
+      date:data?.date ,
       items: data.items,
+      status: 'pending'
     };
 
     console.log(itemList);
@@ -55,7 +74,7 @@ const AddBazar = () => {
             <form onSubmit={handleSubmit(onSubmit)} className="card-body ">
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text">Meal Title</span>
+                  <span className="label-text">Name of Bazar Man</span>
                 </label>
                 <input
                   type="text"
@@ -65,35 +84,27 @@ const AddBazar = () => {
                   className="input input-bordered border-red-400"
                 />
               </div>
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text">Meal Description</span>
-                </label>
-                <input
-                  type="text"
-                  name="des"
-                  {...register("des", { required: true })}
-                  placeholder="Description"
-                  className="textarea textarea-bordered h-24 border-red-400"
-                />
-              </div>
+              
+             
+
+
 
               {fields.map((item, index) => (
                 <div key={item.id} className="form-control">
                   <label className="label">
                     <span className="label-text">{`Item-${
                       index + 1
-                    } (item name and weight)`}</span>
+                    } (Ingredients name and weight)`}</span>
                   </label>
 
-                  <div className="flex  gap-6">
+                  <div className="mt-2 md:flex  gap-6">
                     <div>
                       <input
                         type="text"
                         name={`items[${index}].item`}
                         {...register(`items[${index}].item`, { required: true })}
-                        placeholder="Item Name"
-                        className="input input-bordered w-96 border-red-400"
+                        placeholder="Ingredients Name"
+                        className="input input-bordered w-72 border-red-400"
                       />
                     </div>
 
@@ -108,29 +119,83 @@ const AddBazar = () => {
                         className="input input-bordered  border-red-400"
                       />
                     </div>
-                  </div>
-
-                  <button
+                    <div>
+                    <button
                     type="button"
-                    className="mt-2 btn bg-gray-200 hover:text-white hover:bg-black"
+                    className=" btn bg-red-200 hover:text-white hover:bg-black"
                     onClick={() => remove(index)}
                   >
-                    Remove Item
+                  <FaMinusCircle className="text-2xl" />
                   </button>
+                    </div>
+                  </div>
+
+                  
                 </div>
               ))}
 
               <button
                 type="button"
                 onClick={() => append({ item: "", weight: "" })}
-                className="btn bg-blue-500 text-white hover:text-white hover:bg-black"
+                className="btn w-24 bg-red-200  hover:text-white hover:bg-black"
               >
-                Add This Item
+                <FaPlusCircle className="text-2xl"/>
+
               </button>
+
+
+
+             <div className="md:flex justify-around">
+             <div className="form-control   ">
+                <label className="label">
+                  <span className="label-text">Breakfast Time Total Meal</span>
+                </label>
+                <input
+                  type="number"
+                  name="breakfast"
+                  {...register("breakfast", { required: true })}
+                  placeholder="Total  breakfast meal"
+                  className="input input-bordered border-red-400"
+                />
+                  
+              </div>
+              
+              <div className="form-control   ">
+                <label className="label">
+                  <span className="label-text">Lunch Time Total Meal</span>
+                </label>
+                <input
+                  type="number"
+                  name="lunch"
+                  {...register("lunch", { required: true })}
+                  placeholder="Total lunch meal"
+                  className="input input-bordered border-red-400"
+                />
+                  
+              </div>
+             </div>
+             
+
+
+             <div className="md:flex justify-around">
+             <div className="form-control  ">
+                <label className="label">
+                  <span className="label-text">Dinner Time Total Meal</span>
+                </label>
+                <input
+                  type="number"
+                  name="dinner"
+                  {...register("dinner", { required: true })}
+                  placeholder="Total dinner meal"
+                  className="input input-bordered border-red-400"
+                />
+                  
+              </div>
+
 
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text">Total Meal</span>
+                  <span className="label-text">Overall Total Meal</span>
                 </label>
                 <input
                   type="number"
@@ -140,25 +205,66 @@ const AddBazar = () => {
                   className="input input-bordered border-red-400"
                 />
               </div>
+             </div>
 
-              <div className="form-control mt-6  ">
+             <div className="md:flex md:justify-around">
+
+             <div className="form-control ">
+  <label className="label">
+    <span className="label-text">Select Bazar Date</span>
+  </label>
+  <Controller
+    name="date"
+    className="border-red-400 border"
+    control={control}
+    render={({ field }) => (
+      <div className="relative">
+        <DatePicker
+          selected={field.value}
+          onChange={(date) => {
+            field.onChange(date);
+            setStartDate(date);
+          }}
+          minDate={new Date()} // Set the minimum date to today
+          customInput={
+            <input
+              className="w-full p-2 border-red-400 border rounded-md"
+              placeholder="Select date"
+            />
+          }
+          required
+        />
+        <div className="absolute inset-y-0 cursor-pointer  flex items-center px-2 pointer-events-none">
+          <FaCalendarAlt className="text-red-400" />
+        </div>
+      </div>
+    )}
+  />
+</div>
+
+<div className="form-control   ">
                 <label className="label">
-                  <span className="label-text">Meal Time</span>
+                  <span className="label-text">Given Money for Bazar</span>
                 </label>
-                <select
-                  defaultValue="default"
-                  {...register("tag", { required: true })}
-                  required
-                  className="select select-bordered border-red-400 w-full"
-                >
-                  <option disabled value="default">
-                    Select a Tag
-                  </option>
-                  <option value="breakfast">Breakfast</option>
-                  <option value="lunch">Lunch</option>
-                  <option value="dinner">Dinner</option>
-                </select>
+                <input
+                  type="number"
+                  name="money"
+                  {...register("money", { required: true })}
+                  placeholder="Total  money for bazar"
+                  className="input input-bordered border-red-400"
+                />
+                  
               </div>
+
+
+             </div>
+
+
+
+
+              
+
+
 
               <div className="form-control mt-6">
                 <input
