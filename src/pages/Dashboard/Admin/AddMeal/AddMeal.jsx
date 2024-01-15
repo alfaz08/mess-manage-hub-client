@@ -135,7 +135,7 @@ const AddMeal = () => {
                   <label className="label">
                     <span className="label-text">{`Item-${
                       index + 1
-                    } (Ingredients name and weight)`}</span>
+                    } (Item name and weight)`}</span>
                   </label>
 
                   <div className="mt-2 md:flex  gap-6">
@@ -144,7 +144,7 @@ const AddMeal = () => {
                         type="text"
                         name={`items[${index}].item`}
                         {...register(`items[${index}].item`, { required: true })}
-                        placeholder="Ingredients Name"
+                        placeholder="Item Name"
                         className="input input-bordered w-72 border-red-400"
                       />
                     </div>
@@ -216,7 +216,7 @@ const AddMeal = () => {
 
         <div className="form-control ">
   <label className="label">
-    <span className="label-text">Select Bazar Date</span>
+    <span className="label-text">Meal Date</span>
   </label>
   <Controller
     name="date"

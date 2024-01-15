@@ -41,18 +41,6 @@ const AddBazar = () => {
       
       totalMeal: data.total,
       bazarMoney:data.money,
-      breakfast:{
-        name:'breakfast',
-        meal:data.breakfast
-      },
-      lunch:{
-        name:'lunch',
-        meal:data.lunch
-      },
-      dinner:{
-        name:'dinner',
-        meal:data.dinner
-      },
       createdAt: new Date(),
       date:data?.date ,
       items: data.items,
@@ -134,6 +122,9 @@ const AddBazar = () => {
                 </div>
               ))}
 
+              
+              <div className="flex ">
+              <h2 className="mt-2 ">Add More Item</h2>
               <button
                 type="button"
                 onClick={() => append({ item: "", weight: "" })}
@@ -142,60 +133,21 @@ const AddBazar = () => {
                 <FaPlusCircle className="text-2xl"/>
 
               </button>
-
-
-
-             <div className="md:flex justify-around">
-             <div className="form-control   ">
-                <label className="label">
-                  <span className="label-text">Breakfast Time Total Meal</span>
-                </label>
-                <input
-                  type="number"
-                  name="breakfast"
-                  {...register("breakfast", { required: true })}
-                  placeholder="Total  breakfast meal"
-                  className="input input-bordered border-red-400"
-                />
-                  
               </div>
-              
-              <div className="form-control   ">
-                <label className="label">
-                  <span className="label-text">Lunch Time Total Meal</span>
-                </label>
-                <input
-                  type="number"
-                  name="lunch"
-                  {...register("lunch", { required: true })}
-                  placeholder="Total lunch meal"
-                  className="input input-bordered border-red-400"
-                />
-                  
-              </div>
-             </div>
+
+
+
+           
              
 
 
-             <div className="md:flex justify-around">
-             <div className="form-control  ">
-                <label className="label">
-                  <span className="label-text">Dinner Time Total Meal</span>
-                </label>
-                <input
-                  type="number"
-                  name="dinner"
-                  {...register("dinner", { required: true })}
-                  placeholder="Total dinner meal"
-                  className="input input-bordered border-red-400"
-                />
-                  
-              </div>
+            
+            
 
 
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text">Overall Total Meal</span>
+                  <span className="label-text">Today Total Meal</span>
                 </label>
                 <input
                   type="number"
@@ -205,8 +157,7 @@ const AddBazar = () => {
                   className="input input-bordered border-red-400"
                 />
               </div>
-             </div>
-
+           
              <div className="md:flex md:justify-around">
 
              <div className="form-control ">
