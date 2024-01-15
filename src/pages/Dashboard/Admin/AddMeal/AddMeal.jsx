@@ -43,7 +43,7 @@ const AddMeal = () => {
       email: user?.email,
       title: data.title,
       description: data.des,
-      totalMeal:data.total,
+      totalMeal:parseFloat(data.total),
       time:data.tag,
       createdAt: new Date(),
       date:data?.date ,

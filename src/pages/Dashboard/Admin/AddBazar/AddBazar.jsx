@@ -39,15 +39,28 @@ const AddBazar = () => {
     const itemList = {
       name: data.title,
       
-      totalMeal: data.total,
-      bazarMoney:data.money,
+      totalMeal: parseFloat(data.total),
+      bazarMoney:parseFloat(data.money),
       createdAt: new Date(),
       date:data?.date ,
       items: data.items,
       status: 'pending'
     };
 
-    console.log(itemList);
+    const menuRes =await axiosSecure.post('/bazar',itemList)
+      
+    if(menuRes.data.insertedId){
+      reset()
+      //show success popup
+      Swal.fire({
+        position:"top-end",
+        icon:"success",
+        title:`${data.title} is added in the post!`,
+        showConfirmButton:false,
+        timer:1500
+      })
+
+    }
   };
 
   return (
