@@ -4,6 +4,8 @@ import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import { FaTrashAlt } from "react-icons/fa";
 import useAuth from "../../../../hooks/useAuth";
+import { Helmet } from "react-helmet-async";
+import SectionTitle from "../../../SectionTitle/SectionTitle";
 
 const BazarBookingList = () => {
   const [allBooking, refetch] = useBazarBooking();
@@ -40,8 +42,15 @@ const BazarBookingList = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Mess Manage | Booking</title>
+      </Helmet>
+      <SectionTitle
+        heading="Booking List"
+        subHeading="What's new?"
+      ></SectionTitle>
       <div className="flex justify-evenly my-4">
-        <h2>User List: {allBooking?.length}</h2>
+        <h2>Booking List: {allBooking?.length}</h2>
       </div>
       <div className="overflow-x-auto">
         <table className="table table-zebra ">

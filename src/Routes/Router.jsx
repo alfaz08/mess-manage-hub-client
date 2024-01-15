@@ -16,6 +16,8 @@ import Payment from "../pages/Dashboard/User/Payment/Payment";
 import ConfirmPayment from "../pages/Dashboard/User/Payment/ConfirmPayment";
 import BookDate from "../pages/BookDate/BookDate";
 import BazarBookingList from "../pages/Dashboard/Admin/BazarBookingList/BazarBookingList";
+import BazarList from "../pages/Dashboard/Admin/BazarList/BazarList";
+import MealList from "../pages/Dashboard/Admin/MealList/MealList";
 
 const router = createBrowserRouter([
   {
@@ -85,6 +87,14 @@ const router = createBrowserRouter([
       {
         path: "bookings",
         element: <AdminRoute> <BazarBookingList></BazarBookingList> </AdminRoute>
+      },
+      {
+        path: "allBazar",
+        element: <AdminRoute> <BazarList></BazarList> </AdminRoute>
+      },
+      {
+        path: "allMeal",
+        element: <AdminRoute> <MealList></MealList> </AdminRoute>
       },
     ]
   }

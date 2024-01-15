@@ -42,18 +42,26 @@ const Dashboard = () => {
                Add bazar
                 </NavLink>
             </li>
-            <li>
-              <NavLink to="/dashboard/manageItems">
-              <FaList></FaList>
-                Manage Items
-                </NavLink>
-            </li>
+            
             <li>
               <NavLink to="/dashboard/bookings">
               <FaList></FaList>
                 Bazar Bookings List
                 </NavLink>
             </li>
+            <li>
+              <NavLink to="/dashboard/allBazar">
+              <FaList></FaList>
+                All Bazar
+                </NavLink>
+            </li>
+            <li>
+              <NavLink to="/dashboard/allMeal">
+              <FaList></FaList>
+                All Meal
+                </NavLink>
+            </li>
+
             <li>
               <NavLink to="/dashboard/allUsers">
               <FaUser></FaUser>
