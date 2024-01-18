@@ -1,6 +1,7 @@
 import { Helmet } from "react-helmet-async";
-import Navbar from "../../components/Navbar/Navbar";
+
 import Footer from "../../components/Footer/Footer";
+import AnnouncementBreaking from "../../components/Breaking/AnnouncementBreaking";
 
 
 const Home = () => {
@@ -9,6 +10,9 @@ const Home = () => {
       <Helmet>
         <title>Mess Manage | Home</title>
       </Helmet>
+      <div className="container mx-auto">
+      <AnnouncementBreaking></AnnouncementBreaking>
+      </div>
       <Footer ></Footer>
     </div>
   );
