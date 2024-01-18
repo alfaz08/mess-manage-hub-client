@@ -8,8 +8,8 @@ const AnnouncementBreaking = () => {
   return (
     <div>
       <div className='flex mt-2 mb-2' >
-        <h2 className='bg-red-300 rounded-lg p-4'>Announcement</h2>
-        <Marquee pauseOnHover={true} speed={50} className="marquee-item">
+        <h2 className='bg-red-300 rounded-lg p-4 font-bold'>Announcement</h2>
+        <Marquee pauseOnHover={true} speed={50} className="marquee-item bg-gray-100">
   {announcement.map((item, index) => (
     <span key={item._id}>
       <span className='mt-4'> {item.title}</span>
