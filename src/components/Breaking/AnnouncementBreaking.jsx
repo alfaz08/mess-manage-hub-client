@@ -3,8 +3,8 @@ import useAnnouncement from '../../hooks/useAnnouncement';
 import Marquee from 'react-fast-marquee';
 
 const AnnouncementBreaking = () => {
-  const [announcement,refetch] =useAnnouncement()
-  console.log(announcement);
+  const [announcement] =useAnnouncement()
+
   return (
     <div>
       <div className='flex mt-2 mb-2' >

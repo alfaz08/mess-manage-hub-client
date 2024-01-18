@@ -10,9 +10,9 @@ const Navbar = () => {
 
   const [isAdmin]=useAdmin()
   const [allBooking] =useBazarBooking()
-  console.log(allBooking);
+  
     const {user,logOut} =useAuth()
-   console.log(user);
+  
    const normalizedUserInfo =useProfile()
   
     const handleLogOut =()=>{
