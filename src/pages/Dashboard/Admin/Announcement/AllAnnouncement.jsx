@@ -1,37 +1,22 @@
 
-
-
-
-
-
-
-  import Swal from "sweetalert2";
+import Swal from "sweetalert2";
 import useAuth from "../../../../hooks/useAuth";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 
 import { Helmet } from "react-helmet-async";
 import SectionTitle from "../../../SectionTitle/SectionTitle";
 import { FaTrashAlt } from "react-icons/fa";
-import useMeal from "../../../../hooks/useMeal";
+import useAnnouncement from "../../../../hooks/useAnnouncement";
 import { useParams } from "react-router-dom";
 
 
 
-
-
- 
-
-
-  
-
-
-const MealList = () => {
-  const [allMeal,refetch] =useMeal()
-  
+const AllAnnouncement = () => {
+  const [announcement,refetch] =useAnnouncement()
+  console.log(announcement);
   const axiosSecure =useAxiosSecure()
   const {user} =useAuth()
-
-  console.log(allMeal);
+  
 
 
   const handleDelete = (id) => {
@@ -46,7 +31,7 @@ const MealList = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axiosSecure.delete(`/allMeal/${id}`).then((res) => {
+        axiosSecure.delete(`/announcements/${id}`).then((res) => {
           if (res.data.deletedCount > 0) {
             refetch();
             Swal.fire({
@@ -72,7 +57,7 @@ const MealList = () => {
         subHeading="What's new?"
       ></SectionTitle>
       <div className="flex justify-evenly my-4">
-        <h2>Booking List: {allMeal?.length}</h2>
+        <h2>Booking List: {announcement?.length}</h2>
       </div>
       <div className="overflow-x-auto">
         <table className="table table-zebra ">
@@ -80,30 +65,25 @@ const MealList = () => {
           <thead>
             <tr>
               <th>#</th>
-              <td>Name</td>
-              <td>Meal Title</td>
-              <td>Meal Time</td>
-              <td>Total Meal</td>
-              <td>Meal Item</td>
-             
+              
+              <td>Announcement Title</td>
+              <td>Announcement Description</td>
+              
               <td>Delete</td>
             </tr>
           </thead>
           <tbody>
-            {allMeal?.map((user, index) => (
+            {announcement?.map((user, index) => (
               <tr key={user._id}>
                 <th>{index + 1}</th>
-                <td>{user.name}</td>
+                <td>{user.title}</td>
 
-                <td>{user.title}
+                <td>{user.description}
                   
                 </td>
-                <td>{user.time} </td>
-                <td>{user.totalMeal}</td>
+                
                
-                <td>{user.items.map((item)=>(
-                  `${item.item},`
-                ))}</td>
+                
 
                 <th>
                   <button className="btn btn-ghost btn-lg"
@@ -120,7 +100,7 @@ const MealList = () => {
   );
 };
 
-export default MealList;
+export default AllAnnouncement;
 
  
   

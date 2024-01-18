@@ -18,6 +18,8 @@ import BookDate from "../pages/BookDate/BookDate";
 import BazarBookingList from "../pages/Dashboard/Admin/BazarBookingList/BazarBookingList";
 import BazarList from "../pages/Dashboard/Admin/BazarList/BazarList";
 import MealList from "../pages/Dashboard/Admin/MealList/MealList";
+import Announcement from "../pages/Dashboard/Admin/Announcement/Announcement";
+import AllAnnouncement from "../pages/Dashboard/Admin/Announcement/AllAnnouncement";
 
 const router = createBrowserRouter([
   {
@@ -95,6 +97,14 @@ const router = createBrowserRouter([
       {
         path: "allMeal",
         element: <AdminRoute> <MealList></MealList> </AdminRoute>
+      },
+      {
+        path: "announcement",
+        element: <AdminRoute> <Announcement></Announcement> </AdminRoute>
+      },
+      {
+        path: "allAnnouncement",
+        element: <AdminRoute> <AllAnnouncement></AllAnnouncement> </AdminRoute>
       },
     ]
   }
