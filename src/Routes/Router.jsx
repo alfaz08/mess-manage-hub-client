@@ -55,15 +55,15 @@ const router = createBrowserRouter([
       //for users
       {
         path: "userHome",
-        element: <PrivateRoute><UserHome></UserHome></PrivateRoute>
+        element: <UserHome></UserHome>
       },
       {
         path: "payment",
-        element: <PrivateRoute> <Payment></Payment> </PrivateRoute>
+        element: <Payment></Payment> 
       },
       {
         path: "confirmPayment",
-        element: <PrivateRoute> <ConfirmPayment></ConfirmPayment> </PrivateRoute>
+        element: <ConfirmPayment></ConfirmPayment> 
       },
      
 

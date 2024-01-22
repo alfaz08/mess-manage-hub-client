@@ -12,7 +12,8 @@ const AnnouncementBreaking = () => {
         <Marquee pauseOnHover={true} speed={50} className="marquee-item bg-gray-100">
   {announcement.map((item, index) => (
     <span key={item._id}>
-      <span className='mt-4'> {item.title}</span>
+      <span className='mt-4 text-red-600 font-bold'> {item.title}</span>
+      <span className='mt-4'> {item.description}</span>
       {index < announcement.length  && '\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0'} {/* Non-breaking spaces */}
     </span>
   ))}

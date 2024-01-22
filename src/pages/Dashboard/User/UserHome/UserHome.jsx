@@ -8,8 +8,6 @@ const UserHome = () => {
   console.log(normalizedUserInfo);
  
   
-  // const {address,date,email,image,name,phone,roll,shop} =userInfo
-  console.log(user?.displayName);
 
 
   return (
@@ -21,19 +19,27 @@ const UserHome = () => {
   <div className="card-body">
    
     
-    <div className="card-actions justify-end">
-      <h2>{normalizedUserInfo.bookingDate &&
-                    new Intl.DateTimeFormat("en-US", {
-                      year: "numeric",
-                      day: "numeric",
-                      month: "long",
-                    }).format(new Date(normalizedUserInfo.bookingDate))}</h2>
-    </div>
+    
   </div>
 </div>
       </div>
       <div className=' col-span-2 mt-20'>
-        
+      <div className="card-actions justify-end">
+    {
+       normalizedUserInfo?.bookingDate ==="none"?
+       null
+       :
+        <h2>{normalizedUserInfo?.bookingDate &&
+          new Intl.DateTimeFormat("en-US", {
+            year: "numeric",
+            day: "numeric",
+            month: "long",
+          }).format(new Date(normalizedUserInfo?.bookingDate))}
+          </h2>
+          
+          
+    }
+    </div>
         
       </div>
     </div>
