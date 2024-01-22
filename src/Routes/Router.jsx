@@ -21,6 +21,7 @@ import MealList from "../pages/Dashboard/Admin/MealList/MealList";
 import Announcement from "../pages/Dashboard/Admin/Announcement/Announcement";
 import AllAnnouncement from "../pages/Dashboard/Admin/Announcement/AllAnnouncement";
 import UserDeposit from "../pages/Dashboard/User/UserDeposit/UserDeposit";
+import UserActivities from "../pages/Dashboard/User/UserActivities/UserActivities";
 
 const router = createBrowserRouter([
   {
@@ -69,6 +70,10 @@ const router = createBrowserRouter([
       {
         path: "myDeposit",
         element: <UserDeposit></UserDeposit> 
+      },
+      {
+        path: "myActivities",
+        element: <UserActivities></UserActivities>
       },
      
 

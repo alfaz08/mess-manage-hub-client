@@ -1,5 +1,6 @@
 import useAuth from "../../../../hooks/useAuth";
 import useProfile from "../../../../hooks/useProfile";
+import useSingleDeposit from "../../../../hooks/useSingleDeposit";
 
 
 const UserHome = () => {
@@ -7,6 +8,10 @@ const UserHome = () => {
   const normalizedUserInfo =useProfile()
   console.log(normalizedUserInfo);
  
+  const [myDeposit] =useSingleDeposit()
+  console.log(myDeposit);
+  const totalDeposit =myDeposit.reduce((total,item)=>total+item.price,0)
+  console.log(totalDeposit);
   
 
 
@@ -24,8 +29,10 @@ const UserHome = () => {
 </div>
       </div>
       <div className=' col-span-2 mt-20'>
-      <div className="card-actions justify-end">
-    {
+      <div className="">
+     <div>
+      <h2>Bazar Booking Date:
+      {
        normalizedUserInfo?.bookingDate ==="none"?
        null
        :
@@ -39,6 +46,11 @@ const UserHome = () => {
           
           
     }
+      </h2>
+     </div>
+    <h2>spend money:{totalDeposit} TK</h2>
+    <h2>Total meal </h2>
+    <h2>Overall Meal Rate:</h2>
     </div>
         
       </div>
