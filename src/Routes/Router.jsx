@@ -20,6 +20,7 @@ import BazarList from "../pages/Dashboard/Admin/BazarList/BazarList";
 import MealList from "../pages/Dashboard/Admin/MealList/MealList";
 import Announcement from "../pages/Dashboard/Admin/Announcement/Announcement";
 import AllAnnouncement from "../pages/Dashboard/Admin/Announcement/AllAnnouncement";
+import UserDeposit from "../pages/Dashboard/User/UserDeposit/UserDeposit";
 
 const router = createBrowserRouter([
   {
@@ -64,6 +65,10 @@ const router = createBrowserRouter([
       {
         path: "confirmPayment",
         element: <ConfirmPayment></ConfirmPayment> 
+      },
+      {
+        path: "myDeposit",
+        element: <UserDeposit></UserDeposit> 
       },
      
 

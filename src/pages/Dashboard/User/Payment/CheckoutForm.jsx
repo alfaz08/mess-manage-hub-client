@@ -5,10 +5,12 @@ import useAuth from "../../../../hooks/useAuth";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import useProfile from "../../../../hooks/useProfile";
 
 
 const CheckoutForm = ({postItem}) => {
   console.log("postItem in CheckoutForm:", postItem.amount);
+  const normalizedUserInfo =useProfile()
   const {user} =useAuth()
   console.log(user?.email);
  const stripe = useStripe()
@@ -87,21 +89,33 @@ const CheckoutForm = ({postItem}) => {
         const payment ={
           email: user?.email,
           price:postItem?.amount,
-          transactionId: paymentIntent.id
+          transactionId: paymentIntent.id,
+          date: new Date()
         }
         console.log(payment);
         const res = await axiosSecure.post('/memberPayments',payment)
         console.log('payment done',res.data);
       }
-  
+   
+    if(normalizedUserInfo?.type==='normal')
+    {
       const patchData = {
         type: 'premium',
       };
   
       const patchRes = await axiosSecure.patch(`/member/${user?.email}`, patchData);
       if(patchRes.data.modifiedCount){
-        navigate('/')
+        navigate('/dashboard/myDeposit')
       }
+    }else{
+      navigate('/dashboard/myDeposit')
+    }
+
+      
+
+      
+      
+      
   
   
   

@@ -100,6 +100,12 @@ const Dashboard = () => {
                 </NavLink>
             </li>
             <li>
+              <NavLink to="/dashboard/myDeposit">
+              <FaCalendar></FaCalendar>
+                My Deposit
+                </NavLink>
+            </li>
+            <li>
               <NavLink to="/dashboard/cart">
               <FaShoppingCart></FaShoppingCart>
                 My Cart
