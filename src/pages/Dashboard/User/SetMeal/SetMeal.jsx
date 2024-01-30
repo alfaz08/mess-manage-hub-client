@@ -51,6 +51,7 @@ const SetMeal = () => {
       mealDate: formData.date,
      
       selectedMealOptions: formData.selectedMealOptions,
+      totalMeal:parseFloat(selectedMealOptions.length)
     };
   
      
