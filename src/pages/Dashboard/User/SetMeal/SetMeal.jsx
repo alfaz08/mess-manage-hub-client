@@ -12,10 +12,15 @@ import useAuth from "../../../../hooks/useAuth";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import { lastDayOfMonth } from 'date-fns';
+import useSingleDeposit from "../../../../hooks/useSingleDeposit";
+import { Link } from "react-router-dom";
 
 const SetMeal = () => {
 
   const {user} =useAuth()
+  const [myDeposit] =useSingleDeposit()
+ 
+  const totalDeposit =myDeposit.reduce((total,item)=>total+item.price,0)
  const axiosSecure =useAxiosSecure()
   const [breakfastChecked, setBreakfastChecked] = useState(false);
   const [lunchChecked, setLunchChecked] = useState(false);
@@ -81,7 +86,11 @@ const SetMeal = () => {
         heading="add your meal"
         subHeading=""
       ></SectionTitle>
-      <div className="hero ">
+
+      {
+        totalDeposit>0 ?
+        (
+          <div className="hero ">
         <div className="hero-content flex-col ">
           
           <div className="card shadow-xl md:w-[700px]">
@@ -210,6 +219,33 @@ const SetMeal = () => {
           
         </div>
       </div>
+        )
+        :
+        (
+          <div>
+          <p className="md:text-4xl font-bold text-center">
+            You are not able to book meal. <br />
+            Before start your meal deposit some money.
+          </p>
+          <div className="flex items-center justify-center mt-4">
+            <div className="card w-96 bg-green-200 shadow-2xl">
+              
+              <div className="card-body">
+                <h2 className="text-center font-bold text-4xl p-20"></h2>
+                <div className="card-actions justify-center">
+                  <Link to="/dashboard/payment">
+                    <button className="btn btn-warning hover:text-white hover:bg-black">
+                      Pay
+                    </button>
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        )
+      }
+      
            
    
 <div>

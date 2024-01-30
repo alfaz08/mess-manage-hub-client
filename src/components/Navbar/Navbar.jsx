@@ -118,11 +118,11 @@ const Navbar = () => {
         </Link>
        :
         <Link to='/dashboard/userHome'>
-        <li><a className="hover:bg-green-200">Dashboard</a></li>
+        <li><a className="hover:bg-red-200">Dashboard</a></li>
         </Link>
        }
 
-        <li onClick={handleLogOut}><a className="hover:bg-green-200">Logout</a></li>
+        <li onClick={handleLogOut}><a className="hover:bg-red-200">Logout</a></li>
       </ul>
     </div>
     :
