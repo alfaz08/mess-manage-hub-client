@@ -102,7 +102,7 @@ const Dashboard = () => {
        <li>
               <NavLink to="/dashboard/setMeal">
               <FaHome></FaHome>
-                Off Your Meal
+                Book Your Meal
                 </NavLink>
             </li>
             <li>

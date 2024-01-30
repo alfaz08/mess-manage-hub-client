@@ -8,9 +8,15 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useState } from "react";
 import { subMonths } from 'date-fns'; // Import subMonths function from date-fns
+import useAuth from "../../../../hooks/useAuth";
 
 const SetMeal = () => {
 
+  const {user} =useAuth()
+
+  const [breakfastChecked, setBreakfastChecked] = useState(false);
+  const [lunchChecked, setLunchChecked] = useState(false);
+  const [dinnerChecked, setDinnerChecked] = useState(false);
 
   const {
     register,
@@ -21,20 +27,36 @@ const SetMeal = () => {
   } = useForm();
   const [startDate, setStartDate] = useState(new Date());
 
-  const onSubmit =async (data)=>{
+  const onSubmit = async (data) => {
+    // Capture the selected meal options
+    const selectedMealOptions = [];
+    if (breakfastChecked) selectedMealOptions.push("breakfast");
+    if (lunchChecked) selectedMealOptions.push("lunch");
+    if (dinnerChecked) selectedMealOptions.push("dinner");
   
-    const mealItem ={
+    // Include the meal options in the submitted data
+    const formData = {
+      ...data,
+      selectedMealOptions,
+    };
+  
+    // Create the mealItem object
+    const mealItem = {
       name: user?.displayName,
       email: user?.email,
-      title: data.title,
-      description: data.des,
-      totalMeal:parseFloat(data.total),
-      time:data.tag,
       createdAt: new Date(),
-      date:data?.date ,
-      items: data.items,
-    }
-  }
+      mealDate: formData.date,
+     
+      selectedMealOptions: formData.selectedMealOptions,
+    };
+  
+    // Handle the form submission logic here (e.g., API call, database update, etc.)
+    console.log(mealItem);
+  
+    // Perform any additional actions you need after form submission
+    // For example, you can make an API call to submit the data to the server
+    // await submitMealItemToServer(mealItem);
+  };
 
 
   return (
@@ -54,7 +76,41 @@ const SetMeal = () => {
               
 
 
-              
+            <div className="form-control mt-4">
+        <label className="label">
+          <span className="label-text">Meal Options</span>
+        </label>
+        <div className="flex space-x-4">
+          <label className="inline-flex items-center">
+            <input
+              type="checkbox"
+              checked={breakfastChecked}
+              onChange={() => setBreakfastChecked(!breakfastChecked)}
+              className="form-checkbox text-red-400"
+            />
+            <span className="ml-2">Breakfast</span>
+          </label>
+          <label className="inline-flex items-center">
+            <input
+              type="checkbox"
+              checked={lunchChecked}
+              onChange={() => setLunchChecked(!lunchChecked)}
+              className="form-checkbox text-red-400"
+            />
+            <span className="ml-2">Lunch</span>
+          </label>
+          <label className="inline-flex items-center">
+            <input
+              type="checkbox"
+              checked={dinnerChecked}
+              onChange={() => setDinnerChecked(!dinnerChecked)}
+              className="form-checkbox text-red-400"
+            />
+            <span className="ml-2">Dinner</span>
+          </label>
+        </div>
+      </div>
+
 
 
 
@@ -82,27 +138,7 @@ const SetMeal = () => {
             
    
     
-        {/* category */}
-        <div className="form-control mt-6  ">
-          <label className="label">
-            <span className="label-text">Meal Time</span>
-          </label>
-          <select 
-            defaultValue="default"
-            {...register("tag",{required:true})}
-            required
-            className="select select-bordered border-red-400 w-full"
-          >
-            <option disabled value="default" >
-              Select a Tag
-            </option>
-            <option value="breakfast">Breakfast</option>
-            <option value="lunch">Lunch</option>
-            <option value="dinner">Dinner</option>
-            
-          </select>
-        </div>
-
+       
         <div className="form-control ">
   <label className="label">
     <span className="label-text">Meal Date</span>
@@ -114,21 +150,21 @@ const SetMeal = () => {
     render={({ field }) => (
       <div className="relative ">
         <DatePicker
-          selected={field.value}
-          onChange={(date) => {
-            field.onChange(date);
-            setStartDate(date);
-          }}
-          minDate={new Date()} // Set the minimum date to today
-          
-          customInput={
-            <input
-              className="w-full p-4 ml-2 border-red-400 border rounded-md"
-              placeholder="Select date"
-            />
-          }
-          required
-        />
+  selected={field.value}
+  onChange={(date) => {
+    field.onChange(date);
+    setStartDate(date);
+  }}
+  minDate={subMonths(new Date(), -1)} // Set the minimum date to tomorrow
+  maxDate={subMonths(new Date(), -1)} // Set the maximum date to the end of this month
+  customInput={
+    <input
+      className="w-full p-4 ml-2 border-red-400 border rounded-md"
+      placeholder="Select date"
+    />
+  }
+  required
+/>
         <div className="absolute inset-y-0 cursor-pointer  flex items-center px-2 pointer-events-none">
           <FaCalendarAlt className="text-red-400 " />
         </div>
