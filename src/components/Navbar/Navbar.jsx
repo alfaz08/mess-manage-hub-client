@@ -27,8 +27,17 @@ const Navbar = () => {
 
    const navLinks =<>
          <li className="text-xl"><NavLink to="/">Home</NavLink></li>
-         <li className="text-xl"><NavLink to="/login">Login</NavLink></li>
-         <li className="text-xl"><NavLink to="/signUp">SignUp</NavLink></li>
+         {
+          user ?
+          null:
+          <li className="text-xl"><NavLink to="/login">Login</NavLink></li>
+      
+         }
+         {
+          user ?
+          null:
+          <li className="text-xl"><NavLink to="/signUp">SignUp</NavLink></li>
+         }
          {
           normalizedUserInfo?.bazar==='no'?
           <li className="text-xl"><NavLink to="/bookDate">Book your Bazar Date</NavLink></li>
