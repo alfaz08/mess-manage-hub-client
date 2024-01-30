@@ -19,7 +19,7 @@ const MyMeal = () => {
             <td>Name</td>
             <td>Order Date</td>
             <td>Meal Time</td>
-            <td>Status</td>
+           
           </tr>
         </thead>
         <tbody>
@@ -37,11 +37,11 @@ const MyMeal = () => {
 )}</td>
               
               
-              <td>{user.selectedMealOptions.join(', ')}</td>
+              
 
 
 
-              <td>{ <h2 className='bg-green-300 p-4 text-center rounded-lg'>complete</h2>
+              <td>{ <h2 className='bg-green-300 p-4 text-xl text-center rounded-lg'>{user.selectedMealOptions.join(', ')}</h2>
               }</td>
 
               

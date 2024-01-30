@@ -10,14 +10,15 @@ const UserHome = () => {
   console.log(normalizedUserInfo);
  
   const [myDeposit] =useSingleDeposit()
-  console.log(myDeposit);
+ 
   const totalDeposit =myDeposit.reduce((total,item)=>total+item.price,0)
-  console.log(totalDeposit);
+ 
   
   const [myBookMeal] =useMyMeal()
   console.log(myBookMeal);
+  const totalMeal =myBookMeal.reduce((total,item)=>total+item.totalMeal,0)
 
-  const mealCost = parseFloat(totalDeposit/(myBookMeal.length))
+  const mealCost = parseFloat(totalDeposit/(totalMeal))
 
   return (
     <div className='grid grid-cols-1 md:grid-cols-4'>
@@ -53,7 +54,7 @@ const UserHome = () => {
       </h2>
      </div>
     <h2>spend money:{totalDeposit} TK</h2>
-    <h2>Total meal: {myBookMeal.length} </h2>
+    <h2>Total meal: {totalMeal} </h2>
     <h2>Overall Meal Rate: {mealCost} </h2>
     </div>
         
