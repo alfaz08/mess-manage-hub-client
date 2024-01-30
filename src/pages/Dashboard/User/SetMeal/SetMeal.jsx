@@ -52,11 +52,9 @@ const SetMeal = () => {
     const mealItem = {
       name: user?.displayName,
       email: user?.email,
-      createdAt: new Date(),
-      mealDate: formData.date,
-     
+      mealDate: data?.date,
       selectedMealOptions: formData.selectedMealOptions,
-      totalMeal:parseFloat(selectedMealOptions.length)
+      totalMeal: parseFloat(formData.selectedMealOptions.length),
     };
   
      
@@ -166,18 +164,18 @@ const SetMeal = () => {
     <span className="label-text">Meal Date</span>
   </label>
   <Controller
-    name="date"
-    className="border-red-400 border"
-    control={control}
-    render={({ field }) => (
-      <div className="relative ">
-        <DatePicker
+  name="date"
+  control={control}
+  defaultValue={null} // set default value to null or initial date as needed
+  render={({ field }) => (
+    <div className="relative ">
+      <DatePicker
   selected={field.value}
   onChange={(date) => {
     field.onChange(date);
     setStartDate(date);
   }}
-  minDate={new Date(new Date().setHours(0, 0, 0, 0) + 24 * 60 * 60 * 1000)} // Set the minimum date to tomorrow
+  minDate={new Date()} // Set the minimum date to today
   maxDate={lastDayOfMonth(new Date())} // Set the maximum date to the end of this month
   customInput={
     <input
@@ -187,12 +185,12 @@ const SetMeal = () => {
   }
   required
 />
-        <div className="absolute inset-y-0 cursor-pointer  flex items-center px-2 pointer-events-none">
-          <FaCalendarAlt className="text-red-400 " />
-        </div>
+      <div className="absolute inset-y-0 cursor-pointer  flex items-center px-2 pointer-events-none">
+        <FaCalendarAlt className="text-red-400 " />
       </div>
-    )}
-  />
+    </div>
+  )}
+/>
 </div>
 
               

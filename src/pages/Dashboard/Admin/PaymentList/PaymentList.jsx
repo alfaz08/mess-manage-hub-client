@@ -50,9 +50,9 @@ console.log(depositByEmail);
         <thead>
           <tr>
             <th>#</th>
-            <td>Deposit Money</td>
-            
             <td>Email</td>
+            
+            <td>Deposit Money</td>
             
             <td className="text-center">Status</td>
           </tr>

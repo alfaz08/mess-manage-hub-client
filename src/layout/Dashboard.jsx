@@ -86,6 +86,12 @@ const Dashboard = () => {
                 Payment List
                 </NavLink>
             </li>
+            <li>
+              <NavLink to="/dashboard/todayTotalMeal">
+              <FaUser></FaUser>
+                Today Total Meal
+                </NavLink>
+            </li>
       </>
       :
      
@@ -139,12 +145,7 @@ const Dashboard = () => {
                 Home
                 </NavLink>
             </li>
-        <li>
-              <NavLink to="/order/salad">
-              <FaSearch></FaSearch>
-                Menu
-                </NavLink>
-            </li>
+      
 
 
          </ul>
