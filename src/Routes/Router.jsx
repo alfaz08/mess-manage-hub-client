@@ -26,7 +26,8 @@ import SetMeal from "../pages/Dashboard/User/SetMeal/SetMeal";
 import SingleTotalPayment from "../pages/Dashboard/Admin/TotalPayment/SingleTotalPayment";
 import PaymentList from "../pages/Dashboard/Admin/PaymentList/PaymentList";
 import MyMeal from "../pages/Dashboard/User/MyMeal/MyMeal";
-import TodayMealCalcu from "../pages/Dashboard/Admin/TodayMeal/TodayMealCalcu";
+import TodayMealCalcu from "../pages/Dashboard/Admin/TomorrowMeal/TodayMealCalcu";
+import TodayCount from "../pages/Dashboard/Admin/TodayMealList/TodayCount";
 
 const router = createBrowserRouter([
   {
@@ -136,6 +137,10 @@ const router = createBrowserRouter([
       {
         path: "nextDayMeal",
         element: <AdminRoute> <TodayMealCalcu></TodayMealCalcu> </AdminRoute>
+      },
+      {
+        path: "todayCount",
+        element: <AdminRoute> <TodayCount></TodayCount> </AdminRoute>
       },
     ]
   }

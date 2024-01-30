@@ -92,6 +92,12 @@ const Dashboard = () => {
               Tommorrow total Meal
                 </NavLink>
             </li>
+            <li>
+              <NavLink to="/dashboard/todayCount">
+              <FaUser></FaUser>
+              Today total Meal
+                </NavLink>
+            </li>
       </>
       :
      

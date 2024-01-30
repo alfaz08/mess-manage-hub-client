@@ -7,7 +7,7 @@ const AdminHome = () => {
   
   // const {address,date,email,image,name,phone,roll,shop} =userInfo
   console.log(user?.displayName);
-
+    
 
   return (
     <div className='grid grid-cols-1 md:grid-cols-4'>
