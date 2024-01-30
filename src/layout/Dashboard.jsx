@@ -87,9 +87,9 @@ const Dashboard = () => {
                 </NavLink>
             </li>
             <li>
-              <NavLink to="/dashboard/todayTotalMeal">
+              <NavLink to="/dashboard/nextDayMeal">
               <FaUser></FaUser>
-                Today Total Meal
+              Tommorrow total Meal
                 </NavLink>
             </li>
       </>

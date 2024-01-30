@@ -134,7 +134,7 @@ const router = createBrowserRouter([
         element: <AdminRoute> <PaymentList></PaymentList> </AdminRoute>
       },
       {
-        path: "todayTotalMeal",
+        path: "nextDayMeal",
         element: <AdminRoute> <TodayMealCalcu></TodayMealCalcu> </AdminRoute>
       },
     ]

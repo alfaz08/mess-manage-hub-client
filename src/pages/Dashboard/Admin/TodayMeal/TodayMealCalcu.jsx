@@ -5,12 +5,50 @@ import { FaTrashAlt } from "react-icons/fa";
 
 const TodayMealCalcu = () => {
   const [totalMeal] = useTotalMeal();
-  console.log(totalMeal);
+console.log(totalMeal);
 
-  const totalAllMeal = totalMeal.reduce(
-    (total, item) => total + item.totalMeal,
-    0
-  );
+const current = new Date();
+const tomorrow = new Date(current);
+tomorrow.setDate(current.getDate() + 1);
+
+const tomorrowDay = tomorrow.getDate();
+const tomorrowMonth = tomorrow.getMonth();
+
+const tomorrowMeal = totalMeal.filter((item) => {
+  const itemDate = new Date(item.mealDate);
+  const itemDay = itemDate.getDate();
+  const itemMonth = itemDate.getMonth();
+
+  return itemDay === tomorrowDay && itemMonth === tomorrowMonth;
+});
+
+console.log(tomorrowMeal);
+
+const totalTodayMeal = tomorrowMeal.reduce(
+  (total, item) => total + item.totalMeal,
+  0
+);
+
+//breakfast
+const tomorrowBreakfast = tomorrowMeal?.filter(user =>
+  user?.selectedMealOptions.includes('breakfast')
+);
+
+
+ 
+//lunch
+const tomorrowLunch = tomorrowMeal?.filter(user =>
+  user?.selectedMealOptions.includes('lunch')
+);
+
+//dinner
+const tomorrowDinner = tomorrowMeal?.filter(user =>
+  user?.selectedMealOptions.includes('dinner')
+);
+
+
+
+
 
   return (
     <div>
@@ -22,7 +60,11 @@ const TodayMealCalcu = () => {
         subHeading="What's new?"
       ></SectionTitle>
       <div className="flex justify-evenly my-4">
-        <h2>Today Total Meal: {totalAllMeal}</h2>
+        <h2>Today Tomorrow Meal: {totalTodayMeal}</h2>
+        
+        <h2>Total Breakfast: {tomorrowBreakfast.length}</h2>
+        <h2>Total Lunch: {tomorrowLunch?.length}</h2>
+        <h2>Total Dinner: { tomorrowDinner.length}</h2>
         <h2>Sort By Date: {}</h2>
       </div>
 
@@ -40,7 +82,7 @@ const TodayMealCalcu = () => {
             </tr>
           </thead>
           <tbody>
-            {totalMeal?.map((user, index) => (
+            {tomorrowMeal?.map((user, index) => (
               <tr key={user._id}>
                 <th>{index + 1}</th>
                 <td>{user.name}</td>
