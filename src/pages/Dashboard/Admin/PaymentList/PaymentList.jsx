@@ -2,12 +2,15 @@ import { Helmet } from "react-helmet-async";
 import usePayment from "../../../../hooks/usePayment";
 import SectionTitle from "../../../SectionTitle/SectionTitle";
 
+import useTotalMeal from "../../../../hooks/useTotalMeal";
+
 
 const PaymentList = () => {
 const [totalPayment] =usePayment()
-console.log(totalPayment);
-const totalDeposit =totalPayment.reduce((total,item)=>total+item.price,0)
-console.log(totalDeposit);
+
+const [totalMeal] =useTotalMeal()
+console.log(totalMeal);
+
 
 // const depositByEmail = totalPayment.reduce((acc, item) => {
 //   const { email, price } = item;
@@ -27,8 +30,50 @@ const depositByEmail = Object.values(
   }, {})
 );
 
+const totalSingleMeal = Object.values(
+  totalMeal.reduce((acc, item) => {
+    const { email, totalMeal } = item;
+    if (!acc[email]) {
+      acc[email] = { email, totalMeal: 0 };
+    }
+    acc[email].totalMeal += totalMeal;
+    return acc;
+  }, {})
+);
 
-console.log(depositByEmail);
+
+const matchedData = depositByEmail
+  .filter((depositItem) => {
+    // Find the corresponding totalSingleMeal item with matching email
+    const matchingTotalMeal = totalSingleMeal.find(
+      (mealItem) => mealItem.email === depositItem.email
+    );
+
+    // Include the depositItem in the result only if a matching totalSingleMeal item is found
+    return matchingTotalMeal;
+  })
+  .map((matchedItem) => {
+    // Find the corresponding totalSingleMeal item with matching email
+    const matchingTotalMeal = totalSingleMeal.find(
+      (mealItem) => mealItem.email === matchedItem.email
+    );
+
+    // Combine properties from both depositItem and totalSingleMeal item
+    return {
+      email: matchedItem.email,
+      totalDeposit: matchedItem.totalDeposit,
+      totalMeal: matchingTotalMeal.totalMeal,
+      // Include other properties as needed
+    };
+  });
+
+
+  const totalDeposit =matchedData.reduce((total,item)=>total+item.totalDeposit,0)
+console.log('matchedData',matchedData);
+
+
+console.log('deposit Email',depositByEmail);
+console.log('totalMeal',totalSingleMeal);
 
 
   return (
@@ -41,7 +86,7 @@ console.log(depositByEmail);
         subHeading="What's new?"
       ></SectionTitle>
         <div className="flex justify-evenly my-4">
-      <h2>Transaction History List: {totalPayment?.length}</h2>
+      <h2>Transaction History List: {matchedData?.length}</h2>
       <h2>Total Deposit Money List: {totalDeposit}</h2>
     </div>
     <div className="overflow-x-auto">
@@ -53,19 +98,19 @@ console.log(depositByEmail);
             <td>Email</td>
             
             <td>Deposit Money</td>
-            
+            <td>Total Meal</td>
             <td className="text-center">Status</td>
           </tr>
         </thead>
         <tbody>
-          {depositByEmail?.map((user, index) => (
+          {matchedData?.map((user, index) => (
             <tr key={user._id}>
               <th>{index + 1}</th>
               
             
               <td>{user.email}</td>
               <td>{user.totalDeposit}</td>
-              <td>{user.transactionId}</td>
+              <td>{user.totalMeal}</td>
              <td>Complete</td>
 
 
