@@ -9,9 +9,10 @@ const MealAll = () => {
   return (
     <div>
       <div className="grid justify-center mt-10">
+    
       <h2 className="grid   text-3xl uppercase  border-y-4 py-4 text-center ">All Meal This Month</h2>
       </div>
-      
+      Sort by breakfast
       <div className="grid grid-cols-1 md:grid-cols-3">
         
           {

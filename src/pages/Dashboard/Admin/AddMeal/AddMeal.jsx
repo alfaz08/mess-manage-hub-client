@@ -226,6 +226,7 @@ const AddMeal = () => {
       <div className="relative">
         <DatePicker
           selected={field.value}
+       
           onChange={(date) => {
             field.onChange(date);
             setStartDate(date);
@@ -233,7 +234,7 @@ const AddMeal = () => {
           minDate={new Date()} // Set the minimum date to today
           customInput={
             <input
-              className="w-full p-2 border-red-400 border rounded-md"
+              className="w-full p-4 ml-2 border-red-400 border rounded-md"
               placeholder="Select date"
             />
           }

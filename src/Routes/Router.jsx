@@ -22,6 +22,9 @@ import Announcement from "../pages/Dashboard/Admin/Announcement/Announcement";
 import AllAnnouncement from "../pages/Dashboard/Admin/Announcement/AllAnnouncement";
 import UserDeposit from "../pages/Dashboard/User/UserDeposit/UserDeposit";
 import UserActivities from "../pages/Dashboard/User/UserActivities/UserActivities";
+import SetMeal from "../pages/Dashboard/User/SetMeal/SetMeal";
+import SingleTotalPayment from "../pages/Dashboard/Admin/TotalPayment/SingleTotalPayment";
+import PaymentList from "../pages/Dashboard/Admin/PaymentList/PaymentList";
 
 const router = createBrowserRouter([
   {
@@ -62,6 +65,10 @@ const router = createBrowserRouter([
       {
         path: "payment",
         element: <Payment></Payment> 
+      },
+      {
+        path: "setMeal",
+        element: <SetMeal></SetMeal> 
       },
       {
         path: "confirmPayment",
@@ -115,6 +122,10 @@ const router = createBrowserRouter([
       {
         path: "allAnnouncement",
         element: <AdminRoute> <AllAnnouncement></AllAnnouncement> </AdminRoute>
+      },
+      {
+        path: "paymentList",
+        element: <AdminRoute> <PaymentList></PaymentList> </AdminRoute>
       },
     ]
   }

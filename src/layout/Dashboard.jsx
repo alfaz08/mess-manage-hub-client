@@ -80,6 +80,12 @@ const Dashboard = () => {
                 All Users
                 </NavLink>
             </li>
+            <li>
+              <NavLink to="/dashboard/paymentList">
+              <FaUser></FaUser>
+                Payment List
+                </NavLink>
+            </li>
       </>
       :
      
@@ -91,6 +97,12 @@ const Dashboard = () => {
               <NavLink to="/dashboard/userHome">
               <FaHome></FaHome>
                 User Home
+                </NavLink>
+            </li>
+       <li>
+              <NavLink to="/dashboard/setMeal">
+              <FaHome></FaHome>
+                Off Your Meal
                 </NavLink>
             </li>
             <li>
