@@ -25,6 +25,7 @@ import UserActivities from "../pages/Dashboard/User/UserActivities/UserActivitie
 import SetMeal from "../pages/Dashboard/User/SetMeal/SetMeal";
 import SingleTotalPayment from "../pages/Dashboard/Admin/TotalPayment/SingleTotalPayment";
 import PaymentList from "../pages/Dashboard/Admin/PaymentList/PaymentList";
+import MyMeal from "../pages/Dashboard/User/MyMeal/MyMeal";
 
 const router = createBrowserRouter([
   {
@@ -77,6 +78,10 @@ const router = createBrowserRouter([
       {
         path: "myDeposit",
         element: <UserDeposit></UserDeposit> 
+      },
+      {
+        path: "myMeal",
+        element: <MyMeal></MyMeal>
       },
       {
         path: "myActivities",

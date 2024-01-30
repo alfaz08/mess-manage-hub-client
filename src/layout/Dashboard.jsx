@@ -118,21 +118,9 @@ const Dashboard = () => {
                 </NavLink>
             </li>
             <li>
-              <NavLink to="/dashboard/cart">
-              <FaShoppingCart></FaShoppingCart>
-                My Cart
-                </NavLink>
-            </li>
-            <li>
-              <NavLink to="/dashboard/review">
-              <FaAd></FaAd>
-                Add a Review
-                </NavLink>
-            </li>
-            <li>
-              <NavLink to="/dashboard/bookings">
-              <FaList></FaList>
-                Bookings
+              <NavLink to="/dashboard/myMeal">
+              <FaCalendar></FaCalendar>
+                My Meal List
                 </NavLink>
             </li>
       </>

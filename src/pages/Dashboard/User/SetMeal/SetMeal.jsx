@@ -63,7 +63,7 @@ const SetMeal = () => {
         Swal.fire({
           position:"top-end",
           icon:"success",
-          title:`${data.title} is added in the post!`,
+          title:`Meal is added`,
           showConfirmButton:false,
           timer:1500
         })

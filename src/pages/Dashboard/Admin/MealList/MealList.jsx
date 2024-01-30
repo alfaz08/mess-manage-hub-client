@@ -101,9 +101,8 @@ const MealList = () => {
                 <td>{user.time} </td>
                 <td>{user.totalMeal}</td>
                
-                <td>{user.items.map((item)=>(
-                  `${item.item},`
-                ))}</td>
+                <td>{user.items.map((item) => item.item).join(', ')}</td>
+
 
                 <th>
                   <button className="btn btn-ghost btn-lg"

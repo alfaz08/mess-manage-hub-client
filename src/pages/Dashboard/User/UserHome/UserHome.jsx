@@ -1,4 +1,5 @@
 import useAuth from "../../../../hooks/useAuth";
+import useMyMeal from "../../../../hooks/useMyMeal";
 import useProfile from "../../../../hooks/useProfile";
 import useSingleDeposit from "../../../../hooks/useSingleDeposit";
 
@@ -13,7 +14,10 @@ const UserHome = () => {
   const totalDeposit =myDeposit.reduce((total,item)=>total+item.price,0)
   console.log(totalDeposit);
   
+  const [myBookMeal] =useMyMeal()
+  console.log(myBookMeal);
 
+  const mealCost = parseFloat(totalDeposit/(myBookMeal.length))
 
   return (
     <div className='grid grid-cols-1 md:grid-cols-4'>
@@ -49,8 +53,8 @@ const UserHome = () => {
       </h2>
      </div>
     <h2>spend money:{totalDeposit} TK</h2>
-    <h2>Total meal </h2>
-    <h2>Overall Meal Rate:</h2>
+    <h2>Total meal: {myBookMeal.length} </h2>
+    <h2>Overall Meal Rate: {mealCost} </h2>
     </div>
         
       </div>
