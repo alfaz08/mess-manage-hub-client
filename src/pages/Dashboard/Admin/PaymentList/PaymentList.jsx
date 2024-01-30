@@ -9,6 +9,28 @@ console.log(totalPayment);
 const totalDeposit =totalPayment.reduce((total,item)=>total+item.price,0)
 console.log(totalDeposit);
 
+// const depositByEmail = totalPayment.reduce((acc, item) => {
+//   const { email, price } = item;
+//   acc[email] = (acc[email] || 0) + price;
+//   return acc;
+// }, {});
+
+
+const depositByEmail = Object.values(
+  totalPayment.reduce((acc, item) => {
+    const { email, price } = item;
+    if (!acc[email]) {
+      acc[email] = { email, totalDeposit: 0 };
+    }
+    acc[email].totalDeposit += price;
+    return acc;
+  }, {})
+);
+
+
+console.log(depositByEmail);
+
+
   return (
     <div>
       <Helmet>
@@ -20,6 +42,7 @@ console.log(totalDeposit);
       ></SectionTitle>
         <div className="flex justify-evenly my-4">
       <h2>Transaction History List: {totalPayment?.length}</h2>
+      <h2>Total Deposit Money List: {totalDeposit}</h2>
     </div>
     <div className="overflow-x-auto">
       <table className="table table-zebra ">
@@ -28,32 +51,24 @@ console.log(totalDeposit);
           <tr>
             <th>#</th>
             <td>Deposit Money</td>
-            <td>Deposit Date</td>
+            
             <td>Email</td>
-            <td>Transaction Id</td>
-            <td>Status</td>
+            
+            <td className="text-center">Status</td>
           </tr>
         </thead>
         <tbody>
-          {totalPayment?.map((user, index) => (
+          {depositByEmail?.map((user, index) => (
             <tr key={user._id}>
               <th>{index + 1}</th>
-              <td>{user.price}</td>
-              <td>{user.date && (
-  new Intl.DateTimeFormat('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-    
-  }).format(new Date(user.date))
-)}</td>
+              
+            
               <td>{user.email}</td>
-              
+              <td>{user.totalDeposit}</td>
               <td>{user.transactionId}</td>
-              <td>{ <h2 className='bg-green-300 p-4 text-center rounded-lg'>complete</h2>
-              }</td>
+             <td>Complete</td>
 
-              
+
             </tr>
           ))}
         </tbody>
