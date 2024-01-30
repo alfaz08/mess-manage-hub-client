@@ -9,11 +9,14 @@ import "react-datepicker/dist/react-datepicker.css";
 import { useState } from "react";
 import { subMonths } from 'date-fns'; // Import subMonths function from date-fns
 import useAuth from "../../../../hooks/useAuth";
+import useAxiosSecure from "../../../../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
+import { lastDayOfMonth } from 'date-fns';
 
 const SetMeal = () => {
 
   const {user} =useAuth()
-
+ const axiosSecure =useAxiosSecure()
   const [breakfastChecked, setBreakfastChecked] = useState(false);
   const [lunchChecked, setLunchChecked] = useState(false);
   const [dinnerChecked, setDinnerChecked] = useState(false);
@@ -50,12 +53,21 @@ const SetMeal = () => {
       selectedMealOptions: formData.selectedMealOptions,
     };
   
-    // Handle the form submission logic here (e.g., API call, database update, etc.)
-    console.log(mealItem);
-  
-    // Perform any additional actions you need after form submission
-    // For example, you can make an API call to submit the data to the server
-    // await submitMealItemToServer(mealItem);
+     
+    const menuRes =await axiosSecure.post('/bookMeal',mealItem)
+      
+      if(menuRes.data.insertedId){
+        reset()
+        //show success popup
+        Swal.fire({
+          position:"top-end",
+          icon:"success",
+          title:`${data.title} is added in the post!`,
+          showConfirmButton:false,
+          timer:1500
+        })
+
+      }
   };
 
 
@@ -155,8 +167,8 @@ const SetMeal = () => {
     field.onChange(date);
     setStartDate(date);
   }}
-  minDate={subMonths(new Date(), -1)} // Set the minimum date to tomorrow
-  maxDate={subMonths(new Date(), -1)} // Set the maximum date to the end of this month
+  minDate={new Date(new Date().setHours(0, 0, 0, 0) + 24 * 60 * 60 * 1000)} // Set the minimum date to tomorrow
+  maxDate={lastDayOfMonth(new Date())} // Set the maximum date to the end of this month
   customInput={
     <input
       className="w-full p-4 ml-2 border-red-400 border rounded-md"
@@ -185,7 +197,7 @@ const SetMeal = () => {
                 <input
                   className="btn bg-red-300 hover:text-white hover:bg-black"
                   type="submit"
-                  value="Add Meal"
+                  value="Book Meal"
                 />
               </div>
             </form>
