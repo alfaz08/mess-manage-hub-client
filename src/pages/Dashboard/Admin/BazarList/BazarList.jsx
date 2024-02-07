@@ -21,7 +21,12 @@ const BazarList = () => {
   const axiosSecure =useAxiosSecure()
   const {user} =useAuth()
 
-
+  const currentDate = new Date();
+  const currentMonth = currentDate.getMonth() + 1; 
+  const allBazarMonth = allBazar?.filter(item => {
+    const bazarList = new Date(item.mealDate);
+    return bazarList.getMonth() + 1 === currentMonth;
+  });
   // const handleDelete = (email) => {
   //   Swal.fire({
   //     title: "Are you sure?",
@@ -76,7 +81,7 @@ const BazarList = () => {
             </tr>
           </thead>
           <tbody>
-            {allBazar?.map((user, index) => (
+            {allBazarMonth?.map((user, index) => (
               <tr key={user._id}>
                 <th>{index + 1}</th>
                 <td>{user.name}</td>

@@ -61,6 +61,7 @@ const BazarBookingList = () => {
               <td>Name</td>
               <td>Booking Date</td>
               <td>Email</td>
+              <td>Cancel Bazar</td>
               <td>Delete</td>
             </tr>
           </thead>
@@ -79,6 +80,13 @@ const BazarBookingList = () => {
                     }).format(new Date(user.bookingDate))}
                 </td>
                 <td>{user.email}</td>
+                
+                <th>
+                  <button className="btn btn-ghost btn-lg"
+                  onClick={() => handleDelete(user?.email)}>
+                    <FaTrashAlt className="text-red-600"></FaTrashAlt>
+                  </button>
+                </th>
 
                 <th>
                   <button className="btn btn-ghost btn-lg"
