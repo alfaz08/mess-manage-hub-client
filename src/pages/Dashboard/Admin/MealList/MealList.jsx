@@ -31,8 +31,13 @@ const MealList = () => {
   const axiosSecure =useAxiosSecure()
   const {user} =useAuth()
 
-  console.log(allMeal);
-
+ 
+  const currentDate = new Date();
+  const currentMonth = currentDate.getMonth() + 1; 
+  const allMealMonth = allMeal?.filter(item => {
+    const mealList = new Date(item.mealDate);
+    return mealList.getMonth() + 1 === currentMonth;
+  });
 
   const handleDelete = (id) => {
     console.log(id);
@@ -72,7 +77,7 @@ const MealList = () => {
         subHeading="What's new?"
       ></SectionTitle>
       <div className="flex justify-evenly my-4">
-        <h2>Booking List: {allMeal?.length}</h2>
+        <h2>Booking List: {allMealMonth?.length}</h2>
       </div>
       <div className="overflow-x-auto">
         <table className="table table-zebra ">
@@ -90,7 +95,7 @@ const MealList = () => {
             </tr>
           </thead>
           <tbody>
-            {allMeal?.map((user, index) => (
+            {allMealMonth?.map((user, index) => (
               <tr key={user._id}>
                 <th>{index + 1}</th>
                 <td>{user.name}</td>
