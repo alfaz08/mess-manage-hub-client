@@ -6,36 +6,59 @@ const AdminHome = () => {
   const { user } = useAuth();
 
   const [totalMeal] = useTotalMeal();
+  console.log(totalMeal);
   const [totalPayment] = usePayment();
 
-  const totalAllMeal = totalMeal?.reduce(
-    (total, item) => total + item.totalMeal,
-    0
-  );
-  console.log(totalAllMeal);
 
-  const totalDeposit = totalPayment?.reduce(
-    (total, item) => total + item.price,
-    0
-  );
-  console.log(totalDeposit);
+
+
+
+  const currentDate = new Date();
+const currentMonth = currentDate.getMonth() + 1; // Adding 1 because getMonth() returns zero-based index
+// Filter meals for the current month
+const mealsThisMonth = totalMeal?.filter(item => {
+  const mealDate = new Date(item.mealDate);
+  return mealDate.getMonth() + 1 === currentMonth;
+});
+
+const totalAllMeal = totalMeal
+  ?.filter(item => {
+    const mealDate = new Date(item.mealDate);
+    return mealDate.getMonth() + 1 === currentMonth;
+  })
+  .reduce((total, item) => total + item.totalMeal, 0);
+  console.log('final',totalAllMeal);
+
+
+
+  const totalDeposit = totalPayment 
+    ?. filter(item=>{
+      const paymentDate = new Date(item.date)
+      return paymentDate.getMonth()+1 ===currentMonth
+    })
+    .reduce((total,item)=>total+item.price,0)
+
+    console.log('payment',totalDeposit);
 
   const mealRate = parseFloat(totalDeposit / totalAllMeal).toFixed(3);
 
-  //breakfast
-  const breakfast = totalMeal?.filter((user) =>
-    user?.selectedMealOptions.includes("breakfast")
-  );
+ // Count breakfast, lunch, and dinner meals
+const breakfast = mealsThisMonth?.filter(user =>
+  user?.selectedMealOptions.includes("breakfast")
+)?.length || 0;
 
-  //lunch
-  const lunch = totalMeal?.filter((user) =>
-    user?.selectedMealOptions.includes("lunch")
-  );
+const lunch= mealsThisMonth?.filter(user =>
+  user?.selectedMealOptions.includes("lunch")
+)?.length || 0;
 
-  //dinner
-  const dinner = totalMeal?.filter((user) =>
-    user?.selectedMealOptions.includes("dinner")
-  );
+const dinner = mealsThisMonth?.filter(user =>
+  user?.selectedMealOptions.includes("dinner")
+)?.length || 0;
+
+
+console.log('Breakfast count:', breakfast);
+console.log('Lunch count:', lunch);
+console.log('Dinner count:', dinner);
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-4">
@@ -54,9 +77,9 @@ const AdminHome = () => {
       <div className=" col-span-2 mt-20">
         <h2>Total Deposit: {totalDeposit}</h2>
         <h2>Total Meal: {totalAllMeal}</h2>
-        <h2>Total Breakfast: {breakfast?.length}</h2>
-        <h2>Total Lunch: {lunch?.length}</h2>
-        <h2>Total Dinner: {dinner?.length}</h2>
+        <h2>Total Breakfast: {breakfast}</h2>
+        <h2>Total Lunch: {lunch}</h2>
+        <h2>Total Dinner: {dinner}</h2>
 
         <h2>Meal Rate till Today: {mealRate}</h2>
       </div>
