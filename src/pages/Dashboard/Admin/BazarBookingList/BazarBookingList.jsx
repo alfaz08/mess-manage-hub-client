@@ -12,6 +12,13 @@ const BazarBookingList = () => {
   const axiosSecure =useAxiosSecure()
   const {user} =useAuth()
 
+  const currentDate = new Date();
+  const currentMonth = currentDate.getMonth() + 1; 
+  const allBookingThisMonth = allBooking?.filter(item => {
+    const bookingList = new Date(item.bookingDate);
+    return bookingList.getMonth() + 1 === currentMonth;
+  });
+
 
   const handleDelete = (email) => {
 
@@ -62,7 +69,7 @@ const BazarBookingList = () => {
         subHeading="What's new?"
       ></SectionTitle>
       <div className="flex justify-evenly my-4">
-        <h2>Booking List: {allBooking?.length}</h2>
+        <h2>Booking List: {allBookingThisMonth?.length}</h2>
       </div>
       <div className="overflow-x-auto">
         <table className="table table-zebra ">
@@ -73,12 +80,12 @@ const BazarBookingList = () => {
               <td>Name</td>
               <td>Booking Date</td>
               <td>Email</td>
-              <td>Cancel Bazar</td>
+              
               <td>Delete</td>
             </tr>
           </thead>
           <tbody>
-            {allBooking?.map((user, index) => (
+            {allBookingThisMonth?.map((user, index) => (
               <tr key={user._id}>
                 <th>{index + 1}</th>
                 <td>{user.name}</td>
@@ -93,12 +100,7 @@ const BazarBookingList = () => {
                 </td>
                 <td>{user.email}</td>
                 
-                <th>
-                  <button className="btn btn-ghost btn-lg"
-                  onClick={() => handleDelete(user?.email)}>
-                    <FaTrashAlt className="text-red-600"></FaTrashAlt>
-                  </button>
-                </th>
+                
 
                 <th>
                   <button className="btn btn-ghost btn-lg"
