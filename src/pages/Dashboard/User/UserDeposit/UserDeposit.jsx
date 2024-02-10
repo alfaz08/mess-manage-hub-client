@@ -5,12 +5,17 @@ const UserDeposit = () => {
  
   const [myDeposit] =useSingleDeposit()
  
-
+  const currentDate = new Date();
+  const currentMonth = currentDate.getMonth() + 1;
+  const totalDepositThisMonth = myDeposit?.filter(item => {
+    const totalDeposit = new Date(item.date);
+    return totalDeposit.getMonth() + 1 === currentMonth;
+  });
 
   return (
     <div>
     <div className="flex justify-evenly my-4">
-      <h2>Transaction History List: {myDeposit?.length}</h2>
+      <h2>Transaction History List: {totalDepositThisMonth?.length}</h2>
     </div>
     <div className="overflow-x-auto">
       <table className="table table-zebra ">
@@ -25,7 +30,7 @@ const UserDeposit = () => {
           </tr>
         </thead>
         <tbody>
-          {myDeposit?.map((user, index) => (
+          {totalDepositThisMonth?.map((user, index) => (
             <tr key={user._id}>
               <th>{index + 1}</th>
               <td>{user.price}</td>

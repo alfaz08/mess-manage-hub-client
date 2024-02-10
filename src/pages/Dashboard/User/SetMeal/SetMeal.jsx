@@ -19,8 +19,13 @@ const SetMeal = () => {
 
   const {user} =useAuth()
   const [myDeposit] =useSingleDeposit()
- 
-  const totalDeposit =myDeposit.reduce((total,item)=>total+item.price,0)
+  const currentDate = new Date();
+  const currentMonth = currentDate.getMonth() + 1;
+  const totalDepositThisMonth = myDeposit?.filter(item => {
+    const totalDeposit = new Date(item.date);
+    return totalDeposit.getMonth() + 1 === currentMonth;
+  });
+  const totalDeposit =totalDepositThisMonth.reduce((total,item)=>total+item.price,0)
  const axiosSecure =useAxiosSecure()
   const [breakfastChecked, setBreakfastChecked] = useState(false);
   const [lunchChecked, setLunchChecked] = useState(false);

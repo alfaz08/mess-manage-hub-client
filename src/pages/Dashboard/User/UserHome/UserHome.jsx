@@ -7,18 +7,32 @@ import useSingleDeposit from "../../../../hooks/useSingleDeposit";
 const UserHome = () => {
   const {user} =useAuth()
   const normalizedUserInfo =useProfile()
-  console.log(normalizedUserInfo);
- 
+  const currentDate = new Date();
+  const currentMonth = currentDate.getMonth() + 1; 
+
   const [myDeposit] =useSingleDeposit()
- 
-  const totalDeposit =myDeposit.reduce((total,item)=>total+item.price,0)
-  
+  const totalDepositThisMonth = myDeposit?.filter(item => {
+    const totalDeposit = new Date(item.date);
+    return totalDeposit.getMonth() + 1 === currentMonth;
+  });
+
+  const totalDeposit =totalDepositThisMonth.reduce((total,item)=>total+item.price,0)
   
   const [myBookMeal] =useMyMeal()
-  console.log(myBookMeal);
-  const totalMeal =myBookMeal.reduce((total,item)=>total+item.totalMeal,0)
+  
+  const totalMealThisMonth = myBookMeal?.filter(item => {
+    const totalMeal = new Date(item.mealDate);
+    return totalMeal.getMonth() + 1 === currentMonth;
+  });
 
-  const mealCost = parseFloat(totalDeposit/(totalMeal))
+  const totalMeal =totalMealThisMonth.reduce((total,item)=>total+item.totalMeal,0)
+
+  
+
+
+ 
+
+  
 
   return (
     <div className='grid grid-cols-1 md:grid-cols-4'>
@@ -55,7 +69,7 @@ const UserHome = () => {
      </div>
     <h2>spend money:{totalDeposit} TK</h2>
     <h2>Total meal: {totalMeal} </h2>
-    <h2>Overall Meal Rate: {mealCost} </h2>
+    
     </div>
         
       </div>
