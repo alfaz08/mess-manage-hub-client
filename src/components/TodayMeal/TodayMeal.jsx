@@ -6,22 +6,20 @@ const TodayMeal = () => {
 
   const [allMeal] =useMeal()
 
-  const current = new Date()
-  const currentDay = current.getDate();
-  const currentMonth =current.getMonth()
+  const current = new Date();
+const currentDay = current.getDate();
+const currentMonth = current.getMonth();
 
-  
+const todayMeal = allMeal.filter(item => {
+  const itemDate = new Date(item.date);
+  const itemDay = itemDate.getDate();
+  const itemMonth = itemDate.getMonth();
 
-  const todayMeal = allMeal.filter(item=>{
-    const itemDate = new  Date(item.date)
-    const itemDay= itemDate.getDate()
-    const itemMonth = itemDate.getMonth()
-    
-    return itemDay=== currentDay && itemMonth === currentMonth
-  })
+  return itemDay === currentDay && itemMonth === currentMonth;
+});
 
 
-  console.log(todayMeal);
+  console.log('today meal',todayMeal);
 
   return (
     <div>
