@@ -14,6 +14,8 @@ const BazarBookingList = () => {
 
 
   const handleDelete = (email) => {
+
+   
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -24,6 +26,13 @@ const BazarBookingList = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
+        const patchData = {
+          bazar: 'no',
+          bookingDate: ''
+        };
+        axiosSecure.patch(`/bazarCancel/${email}`, patchData);
+      console.log(patchData);
+
         axiosSecure.delete(`/bazarBooking/${email}`).then((res) => {
           if (res.data.deletedCount > 0) {
             refetch();
@@ -33,6 +42,9 @@ const BazarBookingList = () => {
               icon: "success",
             });
           }
+          
+        
+          
         });
       }
     });

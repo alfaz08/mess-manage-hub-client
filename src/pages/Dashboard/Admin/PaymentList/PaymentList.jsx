@@ -6,11 +6,23 @@ import useTotalMeal from "../../../../hooks/useTotalMeal";
 
 
 const PaymentList = () => {
+  
+
+  const currentDate = new Date();
+const currentMonth = currentDate.getMonth() + 1;
 const [totalPayment] =usePayment()
 
 const [totalMeal] =useTotalMeal()
 console.log(totalMeal);
 
+const mealsThisMonth = totalMeal?.filter(item => {
+  const mealDate = new Date(item.mealDate);
+  return mealDate.getMonth() + 1 === currentMonth;
+});
+const paymentThisMonth = totalPayment?.filter(item => {
+  const paymentDate = new Date(item.date);
+  return paymentDate.getMonth() + 1 === currentMonth;
+});
 
 // const depositByEmail = totalPayment.reduce((acc, item) => {
 //   const { email, price } = item;
@@ -20,7 +32,7 @@ console.log(totalMeal);
 
 
 const depositByEmail = Object.values(
-  totalPayment.reduce((acc, item) => {
+  paymentThisMonth.reduce((acc, item) => {
     const { email, price } = item;
     if (!acc[email]) {
       acc[email] = { email, totalDeposit: 0 };
@@ -31,7 +43,7 @@ const depositByEmail = Object.values(
 );
 
 const totalSingleMeal = Object.values(
-  totalMeal.reduce((acc, item) => {
+  mealsThisMonth.reduce((acc, item) => {
     const { email, totalMeal } = item;
     if (!acc[email]) {
       acc[email] = { email, totalMeal: 0 };

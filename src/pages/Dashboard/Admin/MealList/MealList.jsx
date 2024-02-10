@@ -35,9 +35,12 @@ const MealList = () => {
   const currentDate = new Date();
   const currentMonth = currentDate.getMonth() + 1; 
   const allMealMonth = allMeal?.filter(item => {
-    const mealList = new Date(item.mealDate);
+    const mealList = new Date(item.date);
     return mealList.getMonth() + 1 === currentMonth;
   });
+
+
+  console.log(allMealMonth);
 
   const handleDelete = (id) => {
     console.log(id);

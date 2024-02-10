@@ -24,7 +24,7 @@ const BazarList = () => {
   const currentDate = new Date();
   const currentMonth = currentDate.getMonth() + 1; 
   const allBazarMonth = allBazar?.filter(item => {
-    const bazarList = new Date(item.mealDate);
+    const bazarList = new Date(item.date);
     return bazarList.getMonth() + 1 === currentMonth;
   });
   // const handleDelete = (email) => {
