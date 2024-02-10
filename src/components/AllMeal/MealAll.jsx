@@ -4,7 +4,16 @@ import useMeal from "../../hooks/useMeal";
 const MealAll = () => {
   
   const [allMeal] =useMeal()
-  console.log(allMeal);
+  
+
+  const currentDate = new Date();
+  const currentMonth = currentDate.getMonth() + 1; 
+
+
+  const singleMealThisMonth = allMeal?.filter(item => {
+    const totalMeal = new Date(item.date);
+    return totalMeal.getMonth() + 1 === currentMonth;
+  });
 
   return (
     <div>
@@ -17,7 +26,7 @@ const MealAll = () => {
         
           {
             
-            allMeal?.map(item=>
+            singleMealThisMonth?.map(item=>
               <div key={item._id} className="card w-96 mt-2 bg-base-100 shadow-xl">
     <figure className="px-10 pt-10">
       <img src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" className="rounded-xl" />
