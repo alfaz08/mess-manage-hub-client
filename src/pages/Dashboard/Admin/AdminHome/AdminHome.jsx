@@ -1,4 +1,6 @@
+import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../../hooks/useAuth";
+import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import usePayment from "../../../../hooks/usePayment";
 import useTotalMeal from "../../../../hooks/useTotalMeal";
 
@@ -7,82 +9,124 @@ const AdminHome = () => {
 
   const [totalMeal] = useTotalMeal();
   console.log(totalMeal);
+ 
   const [totalPayment] = usePayment();
 
+   
+   const axiosSecure= useAxiosSecure()
+
+   const {data: stats} = useQuery({
+    queryKey:['admin-stats'],
+    queryFn:async()=>{
+      const res= await axiosSecure.get('/admin-stats')
+      return res.data
+    }
+   })
+
+   console.log('stats',stats);
+
+// adminCount
+
+// breakfastMealsThisMonth
+
+// dinnerMealsThisMonth
+
+// lunchMealsThisMonth
+
+// mealRateThisMonth
+
+// totalMealsThisMonth
+
+// totalPaymentThisMonth
+
+// usersCount
 
 
+ 
 
-
-  const currentDate = new Date();
-const currentMonth = currentDate.getMonth() + 1; // Adding 1 because getMonth() returns zero-based index
-// Filter meals for the current month
-const mealsThisMonth = totalMeal?.filter(item => {
-  const mealDate = new Date(item.mealDate);
-  return mealDate.getMonth() + 1 === currentMonth;
-});
-
-const totalAllMeal = totalMeal
-  ?.filter(item => {
-    const mealDate = new Date(item.mealDate);
-    return mealDate.getMonth() + 1 === currentMonth;
-  })
-  .reduce((total, item) => total + item.totalMeal, 0);
-  console.log('final',totalAllMeal);
-
-
-
-  const totalDeposit = totalPayment 
-    ?. filter(item=>{
-      const paymentDate = new Date(item.date)
-      return paymentDate.getMonth()+1 ===currentMonth
-    })
-    .reduce((total,item)=>total+item.price,0)
-
-    console.log('payment',totalDeposit);
-
-  const mealRate = parseFloat(totalDeposit / totalAllMeal).toFixed(3);
-
- // Count breakfast, lunch, and dinner meals
-const breakfast = mealsThisMonth?.filter(user =>
-  user?.selectedMealOptions.includes("breakfast")
-)?.length || 0;
-
-const lunch= mealsThisMonth?.filter(user =>
-  user?.selectedMealOptions.includes("lunch")
-)?.length || 0;
-
-const dinner = mealsThisMonth?.filter(user =>
-  user?.selectedMealOptions.includes("dinner")
-)?.length || 0;
-
-
-console.log('Breakfast count:', breakfast);
-console.log('Lunch count:', lunch);
-console.log('Dinner count:', dinner);
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-4">
-      <div className="col-span-2">
-        <div className="card card-compact bg-base-100 shadow-xl justify-center items-center mt-20">
-          <figure>
-            <img src={user?.photoURL} alt="Shoes" />
-          </figure>
-          <div className="card-body">
-            <div className="card-actions justify-end">
-              <button className="btn btn-warning">Buy Now</button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className=" col-span-2 mt-20">
-        <h2>Total Deposit: {totalDeposit}</h2>
-        <h2>Total Meal: {totalAllMeal}</h2>
-        <h2>Total Breakfast: {breakfast}</h2>
-        <h2>Total Lunch: {lunch}</h2>
-        <h2>Total Dinner: {dinner}</h2>
+    <div >
 
-        <h2>Meal Rate till Today: {mealRate}</h2>
+      <div>
+        <h2 className="text-4xl font-bold mt-8"> Hi, Welcome {user?.displayName}</h2>
       </div>
+
+   
+      <div className="stats shadow ">
+  
+  <div className="stat">
+    <div className="stat-figure text-secondary">
+     
+    </div>
+    <div className="stat-title">Total User</div>
+    <div className="stat-value">{stats?.usersCount}</div>
+    <div className="stat-desc">Jan 1st - Feb 1st</div>
+  </div>
+
+
+  <div className="stat">
+    <div className="stat-figure text-secondary">
+     
+    </div>
+    <div className="stat-title">Total Admin</div>
+    <div className="stat-value">{stats?.adminCount}</div>
+    <div className="stat-desc">Jan 1st - Feb 1st</div>
+  </div>
+  
+  <div className="stat">
+    <div className="stat-figure text-secondary">
+     
+    </div>
+    <div className="stat-title">Total Meal</div>
+    <div className="stat-value">{stats.totalMealsThisMonth}</div>
+    <div className="stat-desc">↗︎ 400 (22%)</div>
+  </div>
+  
+  <div className="stat">
+    <div className="stat-figure text-secondary">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block w-8 h-8 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"></path></svg>
+    </div>
+    <div className="stat-title">Total Revenue</div>
+    <div className="stat-value">{stats.totalPaymentThisMonth}</div>
+    <div className="stat-desc">↘︎ 90 (14%)</div>
+  </div>
+  <div className="stat">
+    <div className="stat-figure text-secondary">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block w-8 h-8 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"></path></svg>
+    </div>
+    <div className="stat-title">Meal Rate Till Now</div>
+    <div className="stat-value">{stats?.mealRateThisMonth}</div>
+    <div className="stat-desc">↘︎ 90 (14%)</div>
+  </div>
+  <div className="stat">
+    <div className="stat-figure text-secondary">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block w-8 h-8 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"></path></svg>
+    </div>
+    <div className="stat-title">Breakfast</div>
+    <div className="stat-value">{stats?.breakfastMealsThisMonth}</div>
+    <div className="stat-desc">↘︎ 90 (14%)</div>
+  </div>
+  <div className="stat">
+    <div className="stat-figure text-secondary">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block w-8 h-8 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"></path></svg>
+    </div>
+    <div className="stat-title">Lunch</div>
+    <div className="stat-value">{stats?.lunchMealsThisMonth}</div>
+    <div className="stat-desc">↘︎ 90 (14%)</div>
+  </div>
+  <div className="stat">
+    <div className="stat-figure text-secondary">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block w-8 h-8 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"></path></svg>
+    </div>
+    <div className="stat-title">Dinner</div>
+    <div className="stat-value">{stats?.dinnerMealsThisMonth}</div>
+    <div className="stat-desc">↘︎ 90 (14%)</div>
+  </div>
+  
+</div>
+
+
     </div>
   );
 };

@@ -114,7 +114,7 @@ const Navbar = () => {
         {
         isAdmin ?
         <Link to='/dashboard/adminHome'>
-        <li><a className="hover:bg-warning">Dashboard</a></li>
+        <li><a className="hover:bg-red-200">Dashboard</a></li>
         </Link>
        :
         <Link to='/dashboard/userHome'>

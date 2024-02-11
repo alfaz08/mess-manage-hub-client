@@ -60,7 +60,7 @@ const tomorrowDinner = todayMeal?.filter(user =>
         subHeading="What's new?"
       ></SectionTitle>
       <div className="flex justify-evenly my-4">
-        <h2>Today Tomorrow Meal: {totalTodayMeal}</h2>
+        <h2>Today  Meal: {totalTodayMeal}</h2>
         
         <h2>Total Breakfast: {tomorrowBreakfast.length}</h2>
         <h2>Total Lunch: {tomorrowLunch?.length}</h2>
