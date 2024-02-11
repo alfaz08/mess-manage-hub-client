@@ -27,12 +27,12 @@ const Payment = () => {
           placeholder="amount"
           {...register("name",{required:true})}
           required
-          className="input input-bordered w-96 border-amber-400 "
+          className="input input-bordered w-96 border-red-400 "
         />
       </div>
 
      
-      <button className="btn btn-warning hover:text-white hover:bg-black">
+      <button className="btn bg-red-300 hover:text-white hover:bg-black">
         Deposit Money
       </button>
     </form>
