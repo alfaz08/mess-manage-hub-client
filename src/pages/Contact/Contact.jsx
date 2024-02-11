@@ -4,7 +4,7 @@ import { FaLocationDot,FaMobileScreenButton,FaM } from "react-icons/fa6";
 const Contact = () => {
   return (
     <div className="flex justify-center items-center mt-4 b">
-      <div className="card w-[700px] ">
+      <div className="card w-[800px] ">
   <figure><img src="https://i.ibb.co/c6yY19P/contactus.webp" alt="car!"/></figure>
   <div className="card-body text-center items-center">
     <h2 className="card-title "> <FaM></FaM> messmanagehub@gmail.com</h2>
