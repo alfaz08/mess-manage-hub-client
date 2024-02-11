@@ -8,7 +8,7 @@ const Dashboard = () => {
 
 
  const {user} =useAuth()
- const [isMenuOpen, setIsMenuOpen] = useState(false);
+ const [isMenuOpen, setIsMenuOpen] = useState(true);
  const [isAdmin] =useAdmin()
 
   return (
@@ -21,7 +21,8 @@ const Dashboard = () => {
      {
       isAdmin ?
       <>
-        <li>
+       <div onClick={() => setIsMenuOpen(true)} className={`sm:hidden md:block ${isMenuOpen ? 'hidden' : ''} `}>
+       <li>
               <img src={user?.photoURL} className="h-40 w-40 rounded-full ml-6" alt="" />
             </li>
        <li>
@@ -98,10 +99,12 @@ const Dashboard = () => {
               Today total Meal
                 </NavLink>
             </li>
+       </div>
       </>
       :
      
       <>
+       <div onClick={() => setIsMenuOpen(true)} className={`sm:hidden md:block ${isMenuOpen ? 'hidden' : ''} `}>
        <li>
               <img src={user?.photoURL} className="h-40 w-40 rounded-full ml-6" alt="" />
             </li>
@@ -135,6 +138,7 @@ const Dashboard = () => {
                 My Meal List
                 </NavLink>
             </li>
+       </div>
       </>
      }
 
