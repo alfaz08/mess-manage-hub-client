@@ -55,40 +55,24 @@ const UserHome = () => {
 
 
 
-      <div className="flex justify-center">
-      <div className="card w-96 bg-base-100 ">
-  <figure><img className="mt-4 w-96 h-96" src={user?.photoURL} alt="Shoes" /></figure>
-  <div className="card-body grid justify-center">
-  <div className="flex ">
-    <FaUserAlt className="mt-1 text-xl" />
-    <h2 className="card-title">
-    User Name: {user?.displayName}</h2>
-    </div>
-   
-    <div className="flex ">
-    <MdOutlineMail className="mt-1 text-xl" />
-    <h2 className="card-title">
-      User Email: {user?.email}</h2>
-    </div>
+     
 
-    <div className="flex ">
-    <MdAttachMoney className="mt-1 text-2xl" />
-    <h2 className="card-title">
-    spend money: {totalDeposit} TK</h2>
+      <div className="stats shadow">
+  
+  <div className="stat">
+    <div className="stat-figure text-primary">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block w-8 h-8 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
     </div>
-
-    <div className="flex gap-2">
-    <GiMeal className="mt-1 text-2xl" />
-    <h2 className="card-title">
-    Total meal: {totalMeal}</h2>
+    <div className="stat-title">Deposit Money</div>
+    <div className="stat-value text-primary">  {totalDeposit}</div>
+    <div className="stat-desc">21% more than last month</div>
+  </div>
+  <div className="stat">
+    <div className="stat-figure text-primary">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block w-8 h-8 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
     </div>
-
-
-    <div className="flex gap-2">
-    <MdOutlineBookmarkAdded className="mt-1 text-2xl" />
-    <h2 className="card-title">
-    Bazar Booking Date:
-      {
+    <div className="stat-title">Bazar Booking Date</div>
+    <div className="stat-value text-primary">   {
        normalizedUserInfo?.bookingDate ==="none"?
        null
        :
@@ -101,15 +85,33 @@ const UserHome = () => {
           </h2>
           
           
-    }</h2>
-    </div>
-
-
+    }</div>
+    <div className="stat-desc">21% more than last month</div>
   </div>
-</div>
+  
+  <div className="stat">
+    <div className="stat-figure text-secondary">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block w-8 h-8 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+    </div>
+    <div className="stat-title">Total Meal</div>
+    <div className="stat-value text-secondary">{totalMeal}</div>
+    <div className="stat-desc">21% more than last month</div>
+  </div>
+  
+  <div className="stat">
+    <div className="stat-figure text-secondary">
+      <div className="avatar online">
+        <div className="w-16 rounded-full">
+          <img src={user?.photoURL} />
+        </div>
       </div>
-
-
+    </div>
+    <div className="stat-value">{user?.displayName}</div>
+    <div className="stat-title">Tasks done</div>
+    <div className="stat-desc text-secondary">31 tasks remaining</div>
+  </div>
+  
+</div>
 
      
     </div>
