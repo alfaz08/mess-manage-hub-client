@@ -109,7 +109,7 @@ const AdminHome = () => {
     </div>
     <div className="stat-title">Meal Rate Till Now</div>
     <div className="stat-value">{stats?.mealRateThisMonth}</div>
-    <div className="stat-desc">↘︎ 90 (14%)</div>
+  
   </div>
   <div className="stat">
     <div className="stat-figure text-secondary">

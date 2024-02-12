@@ -117,13 +117,22 @@ const [sortMeal, setSortMeal] = useState("");
 <div className="grid grid-cols-1 md:grid-cols-3 ">
         {currentItems?.map((item) => (
           <div key={item._id} className="card w-96 mt-2 bg-base-100 shadow-xl">
-            <figure className="px-10 pt-10">
-              <img
-                src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg"
-                alt="Shoes"
-                className="rounded-xl"
-              />
-            </figure>
+            {
+                item.time ==='breakfast' ?
+                <figure className="px-10 pt-10">
+    <img src="https://i.ibb.co/gFW8DbD/Breakfast-category-icon.png" alt="Shoes" className="rounded-xl" />
+  </figure>
+  :
+  item.time==='lunch'?
+  <figure className="px-10 pt-10">
+    <img src="https://i.ibb.co/mb9dYF8/lunch-chalk.png" alt="Shoes" className="rounded-xl" />
+  </figure>
+  :
+  <figure className="px-10 pt-10">
+    <img src="https://i.ibb.co/FxCC178/e303eb666db7f7dccdff7e47f383b1a3.jpg" alt="Shoes" className="rounded-xl" />
+  </figure>
+
+              }
             <div className="card-body items-center text-center">
               <h2 className="card-title">{item.title}</h2>
               <p>Total {item.time}: {item.totalMeal}</p>
@@ -138,7 +147,7 @@ const [sortMeal, setSortMeal] = useState("");
                   }).format(new Date(item.date))}
               </p>
               <div className="card-actions">
-                <button className="btn bg-red-300">See Details</button>
+               
               </div>
             </div>
           </div>
