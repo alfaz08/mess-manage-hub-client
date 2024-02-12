@@ -37,7 +37,7 @@ const todayMeal = allMeal.filter(item => {
   </figure>
   <div className="card-body items-center text-center">
     <h2 className="card-title">{item.title}</h2>
-    <p>Total Meal: {item.totalMeal}</p>
+    <p>Total {item.time}: {item.totalMeal}</p>
     <p> Meal Time: {item.time}</p>
     <p>Date:  {item.date &&
                     new Intl.DateTimeFormat("en-US", {

@@ -44,6 +44,7 @@ const Navbar = () => {
           :
           null
          }
+ <li className="text-xl"><NavLink to="/todayBazar">Today Bazar List</NavLink></li>
  <li className="text-xl"><NavLink to="/contact">Contact Us</NavLink></li>
    
    </>

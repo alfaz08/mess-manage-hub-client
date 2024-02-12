@@ -29,6 +29,7 @@ import MyMeal from "../pages/Dashboard/User/MyMeal/MyMeal";
 import TodayMealCalcu from "../pages/Dashboard/Admin/TomorrowMeal/TodayMealCalcu";
 import TodayCount from "../pages/Dashboard/Admin/TodayMealList/TodayCount";
 import Contact from "../pages/Contact/Contact";
+import TodayBazarList from "../pages/TodayBazarList/TodayBazarList";
 
 const router = createBrowserRouter([
   {
@@ -55,6 +56,10 @@ const router = createBrowserRouter([
     {
       path: "contact",
       element: <Contact></Contact>
+    },
+    {
+      path: "todayBazar",
+      element: <PrivateRoute><TodayBazarList></TodayBazarList></PrivateRoute>
     },
    ]
   },
