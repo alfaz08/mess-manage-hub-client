@@ -2,15 +2,10 @@ import useAuth from "../../../../hooks/useAuth";
 import useMyMeal from "../../../../hooks/useMyMeal";
 import useProfile from "../../../../hooks/useProfile";
 import useSingleDeposit from "../../../../hooks/useSingleDeposit";
-import { MdOutlineMail } from "react-icons/md";
+import { FaDollarSign } from "react-icons/fa6";
 
-
-import SectionTitle from "../../../SectionTitle/SectionTitle";
-import { FaUserAlt } from "react-icons/fa";
-import { MdAttachMoney } from "react-icons/md";
-import { GiMeal } from "react-icons/gi";
-
-import { MdOutlineBookmarkAdded } from "react-icons/md";
+import { MdOutlineBookmarkAdd } from "react-icons/md";
+import { GiHotMeal } from "react-icons/gi";
 
 
 
@@ -48,31 +43,51 @@ const UserHome = () => {
   return (
     <div className=''>
       
-      <SectionTitle
-        heading="Profile"
-        subHeading="Welcome to Your"
-      ></SectionTitle>
+      <div className="mx-auto text-center border-red-300 border-y-4 py-4 md:w-4/12 my-8">
+    <h3 className="text-3xl uppercase ">Welcome {user?.displayName} DASHboard</h3>
+   <h2>Whole meal data this month</h2>
+    </div>
 
 
 
      
 
+      <div className="mx-auto text-center md:w-6/12 my-6">
       <div className="stats shadow">
   
-  <div className="stat">
+  <div className="stat bg-red-200">
     <div className="stat-figure text-primary">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block w-8 h-8 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+    
+
     </div>
     <div className="stat-title">Deposit Money</div>
-    <div className="stat-value text-primary">  {totalDeposit}</div>
-    <div className="stat-desc">21% more than last month</div>
+    <div className="stat-value text-primary flex gap-2"> <FaDollarSign className="mt-3 text-xl"/> {totalDeposit}</div>
+
   </div>
-  <div className="stat">
+  
+  
+  <div className="stat  bg-red-200">
+    <div className="stat-figure text-secondary">
+    
+
+    </div>
+    <div className="stat-title">Total Meal</div>
+    <div className="stat-value text-secondary flex gap-6"><GiHotMeal className="text-xl mt-3"/>{totalMeal}</div>
+    
+  </div>
+
+  
+</div>
+      </div>
+
+ <div className="mx-auto text-center rounded-lg md:w-4/12 my-8">
+ <div className="stat  bg-red-200">
     <div className="stat-figure text-primary">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block w-8 h-8 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+    
+
     </div>
     <div className="stat-title">Bazar Booking Date</div>
-    <div className="stat-value text-primary">   {
+    <div className="stat-value text-primary flex gap-2 justify-center"> < MdOutlineBookmarkAdd className="mt-1"></MdOutlineBookmarkAdd>{
        normalizedUserInfo?.bookingDate ==="none"?
        null
        :
@@ -86,32 +101,10 @@ const UserHome = () => {
           
           
     }</div>
-    <div className="stat-desc">21% more than last month</div>
+   
   </div>
-  
-  <div className="stat">
-    <div className="stat-figure text-secondary">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block w-8 h-8 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-    </div>
-    <div className="stat-title">Total Meal</div>
-    <div className="stat-value text-secondary">{totalMeal}</div>
-    <div className="stat-desc">21% more than last month</div>
-  </div>
-  
-  <div className="stat">
-    <div className="stat-figure text-secondary">
-      <div className="avatar online">
-        <div className="w-16 rounded-full">
-          <img src={user?.photoURL} />
-        </div>
-      </div>
-    </div>
-    <div className="stat-value">{user?.displayName}</div>
-    <div className="stat-title">Tasks done</div>
-    <div className="stat-desc text-secondary">31 tasks remaining</div>
-  </div>
-  
-</div>
+ </div>
+
 
      
     </div>

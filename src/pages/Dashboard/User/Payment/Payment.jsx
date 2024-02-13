@@ -16,7 +16,15 @@ const Payment = () => {
   }
   
   return (
+
+
     <div>
+      <div className="mx-auto text-center border-red-300 border-y-4 py-4 md:w-4/12 my-8">
+   <h2 className="text-3xl">Deposit Your Money</h2>
+    </div>
+
+    
+    <div className="mx-auto text-center md:w-4/12 my-8">
       <form onSubmit={handleSubmit(onSubmit)} className="ml-2">
       <div className="form-control my-6">
         <label className="label">
@@ -32,10 +40,11 @@ const Payment = () => {
       </div>
 
      
-      <button className="btn bg-red-300 hover:text-white hover:bg-black">
+      <button className="btn justify-center text-center bg-red-300 hover:text-white hover:bg-black">
         Deposit Money
       </button>
     </form>
+    </div>
     </div>
   );
 };

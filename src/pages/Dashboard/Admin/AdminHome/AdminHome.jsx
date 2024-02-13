@@ -15,6 +15,9 @@ import { MdOutlineDinnerDining } from "react-icons/md";
 const AdminHome = () => {
   const { user } = useAuth();
 
+  
+
+
   const [totalMeal] = useTotalMeal();
   console.log(totalMeal);
  
@@ -31,111 +34,123 @@ const AdminHome = () => {
     }
    })
 
-   console.log('stats',stats);
+  
 
-// adminCount
+ 
 
-// breakfastMealsThisMonth
 
-// dinnerMealsThisMonth
-
-// lunchMealsThisMonth
-
-// mealRateThisMonth
-
-// totalMealsThisMonth
-
-// totalPaymentThisMonth
-
-// usersCount
 
 
  
 
 
   return (
-    <div >
+    <div className="ml-2">
+
+
+
+<div className="mx-auto text-center border-red-300 border-y-4 py-4 md:w-4/12 my-8">
+    <h3 className="text-3xl uppercase ">Welcome {user?.displayName} DASHboard</h3>
+   <h2>Whole data of your mess</h2>
+    </div>
+
 
       
-
-      <div>
-        <h2 className="text-4xl font-bold mt-8"> Hi, Welcome {user?.displayName}</h2>
-      </div>
-
-   
-      <div className="stats shadow ">
+<div className="mx-auto text-center md:w-4/12 my-8">
+<div className=" stats shadow mt-4 ">
   
-  <div className="stat">
+  <div className="stat bg-red-200">
     <div className="stat-figure text-secondary">
     <FaUsers className="text-4xl" />
 
     </div>
-    <div className="stat-title">Total User</div>
+    <div className="stat-title text-black">Total User</div>
     <div className="stat-value">{stats?.usersCount}</div>
   </div>
 
 
-  <div className="stat">
+  <div className="stat bg-red-200">
     <div className="stat-figure text-secondary">
     <RiAdminLine className="text-4xl" />
 
     </div>
-    <div className="stat-title">Total Admin</div>
+    <div className="stat-title text-black">Total Admin</div>
     <div className="stat-value">{stats?.adminCount}</div>
     
   </div>
   
-  <div className="stat">
+  <div className="stat bg-red-200">
     <div className="stat-figure text-secondary">
     <GiMeal className="text-4xl"/>
     </div>
-    <div className="stat-title">Total Meal</div>
+    <div className="stat-title text-black">Total Meal</div>
     <div className="stat-value">{stats?.totalMealsThisMonth}</div>
     
   </div>
   
-  <div className="stat">
+  <div className="stat bg-red-200">
     <div className="stat-figure text-secondary">
     <MdOutlineAttachMoney className="text-4xl"/>
 
     </div>
-    <div className="stat-title">Total Deposit</div>
+    <div className="stat-title text-black">Total Deposit</div>
     <div className="stat-value">{stats?.totalPaymentThisMonth}</div>
     
   </div>
-  <div className="stat">
-    <div className="stat-figure text-secondary">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block w-8 h-8 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"></path></svg>
-    </div>
-    <div className="stat-title">Meal Rate Till Now</div>
-    <div className="stat-value">{stats?.mealRateThisMonth}</div>
   
+  
+</div>
+</div>
+   
+      
+<div className="mx-auto text-center md:w-4/12 my-8">
+
+<div className=" stats shadow mt-4">
+  
+ 
+
+
+  
+  <div className="stat bg-red-200">
+    <div className="stat-figure text-secondary">
+    <GiMeal className="text-4xl"/>
+    </div>
+    <div className="stat-title text-black">Total Meal</div>
+    <div className="stat-value">{stats?.totalMealsThisMonth}</div>
+    
   </div>
-  <div className="stat">
+  
+  
+  <div className="stat bg-red-200">
     <div className="stat-figure text-secondary">
     <MdOutlineFreeBreakfast className="text-4xl"/>
     </div>
-    <div className="stat-title">Breakfast</div>
+    <div className="stat-title text-black">Breakfast</div>
     <div className="stat-value">{stats?.breakfastMealsThisMonth}</div>
 
   </div>
-  <div className="stat">
+  <div className="stat bg-red-200">
     <div className="stat-figure text-secondary">
     <MdOutlineDinnerDining className="text-4xl"/>    </div>
-    <div className="stat-title">Lunch</div>
+    <div className="stat-title text-black">Lunch</div>
     <div className="stat-value">{stats?.lunchMealsThisMonth}</div>
    
   </div>
-  <div className="stat">
+  <div className="stat bg-red-200">
     <div className="stat-figure text-secondary">
     <MdOutlineDinnerDining className="text-4xl"/>
     </div>
-    <div className="stat-title">Dinner</div>
+    <div className="stat-title text-black">Dinner</div>
     <div className="stat-value">{stats?.dinnerMealsThisMonth}</div>
-    <div className="stat-desc">↘︎ 90 (14%)</div>
+    
   </div>
   
 </div>
+</div>
+
+
+
+
 
 
     </div>

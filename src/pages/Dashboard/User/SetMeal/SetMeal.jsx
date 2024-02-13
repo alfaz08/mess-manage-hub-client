@@ -86,7 +86,7 @@ const SetMeal = () => {
         <title>Mess Manage | Book Meal</title>
       </Helmet>
       <SectionTitle
-        heading="add your meal"
+        heading="Book your meal"
         subHeading=""
       ></SectionTitle>
 

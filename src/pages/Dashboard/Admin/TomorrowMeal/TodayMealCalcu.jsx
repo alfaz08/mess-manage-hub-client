@@ -56,11 +56,11 @@ const tomorrowDinner = tomorrowMeal?.filter(user =>
         <title>Mess Manage | Deposit Money</title>
       </Helmet>
       <SectionTitle
-        heading="Deposit List"
+        heading="Tomorrow meal List"
         subHeading="What's new?"
       ></SectionTitle>
       <div className="flex justify-evenly my-4">
-        <h2>Today Tomorrow Meal: {totalTodayMeal}</h2>
+        <h2>Tomorrow Meal: {totalTodayMeal}</h2>
         
         <h2>Total Breakfast: {tomorrowBreakfast.length}</h2>
         <h2>Total Lunch: {tomorrowLunch?.length}</h2>

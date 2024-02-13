@@ -56,8 +56,8 @@ const tomorrowDinner = todayMeal?.filter(user =>
         <title>Mess Manage | Deposit Money</title>
       </Helmet>
       <SectionTitle
-        heading="Deposit List"
-        subHeading="What's new?"
+        heading="Today Meal List"
+        subHeading=""
       ></SectionTitle>
       <div className="flex justify-evenly my-4">
         <h2>Today  Meal: {totalTodayMeal}</h2>

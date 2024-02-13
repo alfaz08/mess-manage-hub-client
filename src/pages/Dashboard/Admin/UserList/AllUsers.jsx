@@ -63,9 +63,11 @@ const AllUsers = () => {
 
   return (
     <div>
-    <div className="flex justify-evenly my-4">
-      <h2>User List: {allUser?.length}</h2>
+      <div className="mx-auto text-center border-red-300 border-y-4 py-4 md:w-4/12 my-8">
+   <h2 className="text-3xl">User List: {allUser?.length}</h2>
     </div>
+    
+    
     <div className="overflow-x-auto">
       <table className="table table-zebra ">
         {/* head */}
