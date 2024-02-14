@@ -12,7 +12,7 @@ const Contact = () => {
     <h2 className="card-title"><FaLocationDot></FaLocationDot> Dhaka,Bangladesh</h2>
     
     <div className="card-actions justify-center">
-      <button className="btn bg-purple-400 font-bold">Call Now</button>
+      <button className="btn bg-red-300 font-bold">Call Now</button>
     </div>
   </div>
 </div>

@@ -38,7 +38,11 @@ const Navbar = () => {
           null:
           <li className="text-xl"><NavLink to="/signUp">SignUp</NavLink></li>
          }
+          
          {
+
+          isAdmin ?
+          null :
           normalizedUserInfo?.bazar==='no'?
           <li className="text-xl"><NavLink to="/bookDate">Book your Bazar Date</NavLink></li>
           :

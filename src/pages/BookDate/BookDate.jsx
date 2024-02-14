@@ -74,7 +74,7 @@ const BookDate = () => {
         className="hero min-h-screen"
         style={{
           backgroundImage:
-            'url(https://daisyui.com/images/stock/photo-1507358522600-9f71e620c44e.jpg)',
+            'url(https://i.ibb.co/3mXdzPG/bf65d51f34b1bf193ec947f3c0c3f3e0.jpg)',
         }}
       >
         <div className="hero-overlay bg-opacity-60"></div>
@@ -88,7 +88,7 @@ const BookDate = () => {
             />
             <button
               onClick={() => handleBookDate(value)}
-              className="btn btn-warning hover:text-white hover:bg-black"
+              className="btn bg-red-300 hover:text-white hover:bg-black"
             >
               Book Date
             </button>
