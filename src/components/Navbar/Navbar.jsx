@@ -30,13 +30,13 @@ const Navbar = () => {
          {
           user ?
           null:
-          <li className="text-xl"><NavLink to="/login">Login</NavLink></li>
+          null
       
          }
          {
           user ?
           null:
-          <li className="text-xl"><NavLink to="/signUp">SignUp</NavLink></li>
+          null
          }
           
          {
@@ -132,7 +132,7 @@ const Navbar = () => {
     </div>
     :
     <div>
-      <Link to="/login" className="text-2xl font-bold">Login</Link>
+      <Link to="/login" className="text-2xl font-bold">Join Now</Link>
     </div>
   }
 
