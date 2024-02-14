@@ -1,6 +1,7 @@
+# Project Title: Mess Manage Hub With MERN Stack
 
-# Project Title: Mess Manage Hub
-
+## Project Overview
+#### Mess Manage Hub is a comprehensive web application designed to streamline meal and bazar management in shared living environments, such as mess facilities or hostels. The platform provides an intuitive and feature-rich experience for both managers and members, enhancing the efficiency of daily operations and promoting better communication.
 
 ## Features
 
